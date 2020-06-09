@@ -7,22 +7,28 @@
 	"pages": [
 		//pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/tabbar/tabbar-1/tabbar-1",
+			"path": "pages/mainpage/home/home",
 			"style": {
-				"navigationBarTitleText": "uni-app"
+				"navigationBarTitleText": "首页"
 			}
 		},
 		{
-			"path": "pages/tabbar/tabbar-2/tabbar-2",
-			"style": {}
+			"path": "pages/mainpage/engin/engin",
+			"style": {
+				"navigationBarTitleText": "工程项目"
+			}
 		},
 		{
-			"path": "pages/tabbar/tabbar-4/tabbar-4",
-			"style": {}
+			"path": "pages/mainpage/assess/assess",
+			"style": {
+				"navigationBarTitleText": "现场评定"
+			}
 		},
 		{
-			"path": "pages/tabbar/tabbar-5/tabbar-5",
-			"style": {}
+			"path": "pages/mainpage/usermes/usermes",
+			"style": {
+				"navigationBarTitleText": "我的信息"
+			}
 		}
 	],
 	"globalStyle": {
@@ -37,25 +43,25 @@
 		"color": "#8F8F94",
 		"selectedColor": "#46BDCF",
 		"list": [{
-				"pagePath": "pages/tabbar/tabbar-1/tabbar-1",
+				"pagePath": "pages/mainpage/home/home",
 				"iconPath": "static/img/tabbar/home.png",
 				"selectedIconPath": "static/img/tabbar/homeactive.png",
 				"text": "首页"
 			},
 			{
-				"pagePath": "pages/tabbar/tabbar-2/tabbar-2",
+				"pagePath": "pages/mainpage/engin/engin",
 				"iconPath": "static/img/tabbar/engin.png",
 				"selectedIconPath": "static/img/tabbar/enginactive.png",
 				"text": "工程项目"
 			},
 			{
-				"pagePath": "pages/tabbar/tabbar-4/tabbar-4",
+				"pagePath": "pages/mainpage/assess/assess",
 				"iconPath": "static/img/tabbar/news.png",
 				"selectedIconPath": "static/img/tabbar/newsactive.png",
 				"text": "现场评定"
 			},
 			{
-				"pagePath": "pages/tabbar/tabbar-5/tabbar-5",
+				"pagePath": "pages/mainpage/usermes/usermes",
 				"iconPath": "static/img/tabbar/me.png",
 				"selectedIconPath": "static/img/tabbar/meactive.png",
 				"text": "我的信息"
