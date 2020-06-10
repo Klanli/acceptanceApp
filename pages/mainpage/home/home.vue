@@ -1,6 +1,6 @@
 <template>
 	<view class="home_content">
-		<u-number-box :value="0" @change="valChange"></u-number-box>
+		<button type="default" @click='valChange'>发起请求</button>
 	</view>
 </template>
 
@@ -9,10 +9,8 @@
 <style>
 	.home_content {
 		text-align: center;
-		height: 50vh;
-		/* margin-top: 200upx; */
+		margin-top: 200upx;
 		margin: 0;
 		padding: 0;
-		background-color: #24222D;
 	}
 </style>
