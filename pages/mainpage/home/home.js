@@ -1,11 +1,15 @@
 export default {
 	data() {
 		return {
-			
+
 		};
 	},
 	onLoad() {
-		
+
 	},
-	methods: {}
+	methods: {
+		valChange(e) {
+			console.log('当前值为: ' + e.value)
+		}
+	}
 };

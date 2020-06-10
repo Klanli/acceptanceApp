@@ -9,7 +9,7 @@
 		{
 			"path": "pages/mainpage/home/home",
 			"style": {
-				"navigationBarTitleText": "首页"
+				"navigationBarTitleText": "建设工程消防验收"
 			}
 		},
 		{
@@ -35,7 +35,7 @@
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "--",
 		"navigationBarBackgroundColor": "#343440",
-		"backgroundColor": "#F8F8F8"
+		"backgroundColor": "#00aa00"
 	},
 	"tabBar": {
 		"borderStyle": "black",

@@ -1,6 +1,7 @@
 <template>
 	<view class="engin_content">
 		工程项目
+		<test></test>
 	</view>
 </template>
 

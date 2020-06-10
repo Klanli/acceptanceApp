@@ -1,6 +1,6 @@
 <template>
 	<view class="home_content">
-		首页
+		<u-number-box :value="0" @change="valChange"></u-number-box>
 	</view>
 </template>
 
@@ -9,9 +9,10 @@
 <style>
 	.home_content {
 		text-align: center;
-		height: 100vh-50px;
-		margin-top: 200upx;
+		height: 50vh;
+		/* margin-top: 200upx; */
 		margin: 0;
 		padding: 0;
+		background-color: #24222D;
 	}
 </style>
