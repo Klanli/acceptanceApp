@@ -1,14 +1,14 @@
 <template>
 	<view class="login_content">
-		<u-avatar src="src"></u-avatar>
+		<p>登 录</p>
 		<u-form ref="uForm">
 			<u-form-item label="姓名" prop="name">
-				<u-input v-model="form.name" />
+				<u-input v-model="form.name" type="text"/>
 			</u-form-item>
 			<u-form-item label="密码" prop="name">
-				<u-input type="password" v-model="form.name" />
+				<u-input type="password" v-model="form.pasd" />
 			</u-form-item>
-			<u-button type="primary" @click="login">主要按钮</u-button>
+			<u-button type="primary" @click="login">登录</u-button>
 		</u-form>
 	</view>
 </template>
@@ -17,23 +17,22 @@
 
 <style lang="less">
 	.login_content{
-		color: #fff;
 		height: calc(100vh);
 		text-align: center;
 		display: flex;
 		flex-direction: column;
-		justify-content: space-around;
+		align-items: center;
 		p{
-			font-size: 60rpx;
+			font-size: 28px;
 			font-weight: 600;
-			letter-spacing: 18rpx;
+			color: #3E606F;
+			margin: 10vh 0;
 		}
-		span{
-			
-		}
-		input{
-			color:#000000;
-			background-color: #fff;
+		.u-form{
+			width: 70vw;
+			.u-form-item{
+				margin: 4vh 0;
+			}
 		}
 	}
 </style>

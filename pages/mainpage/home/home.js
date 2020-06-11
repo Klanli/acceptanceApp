@@ -1,8 +1,21 @@
 export default {
 	data() {
 		return {
-			show: true,
-			mode: 'date'
+			percent: 70,
+			optionData: [
+				{label:'待验收',value:'222'},
+				{label:'待验收',value:'222'},
+				{label:'待验收',value:'222'},
+				{label:'待验收',value:'222'},
+				{label:'待验收',value:'222'},
+				{label:'待验收',value:'222'}
+			],
+			list: [
+				{title:'热门'},
+				{title:'热门'},
+				{title:'热门'},
+				{title:'热门'},
+			]
 		};
 	},
 	onLoad() {

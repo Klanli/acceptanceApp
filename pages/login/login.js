@@ -3,8 +3,7 @@ export default {
 		return {
 			form: {
 				name: '',
-				intro: '',
-				sex: ''
+				pasd: '',
 			}
 		};
 	},
