@@ -10,6 +10,7 @@
 	.home_content {
 		text-align: center;
 		margin-top: 200upx;
+		height: calc(100vh - 44px - 50px);
 		margin: 0;
 		padding: 0;
 	}

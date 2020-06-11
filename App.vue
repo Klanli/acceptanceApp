@@ -17,6 +17,6 @@ export default {
 <style lang='scss'>
 	/* uView通用样式 */
 	@import "uview-ui/index.scss";
-		
+	
 	/*每个页面公共css */ 
 </style>

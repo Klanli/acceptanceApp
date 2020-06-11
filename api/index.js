@@ -2,7 +2,7 @@ import apilist from './APIconfig.js'
 import { BASEURL } from './HOSTconfig.js'
 
 
-let Token = 'eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE1OTE3Nzk0OTcsInN1YmplY3QiOiIxMSIsInRhcmdldCI6IlNZU1RFTSIsImV4cCI6MTU5MTc5MDI5N30.bIW4MGZKUeDlu2JzevuZATN8CqNjgF0rofQIJ4WBLi9tqo34OSa03vwUXSosOlngGJDqxF7Vb_aXA3gJrhw1cA'
+let Token = 'eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE1OTE4ODkxMjksInN1YmplY3QiOiIxMSIsInRhcmdldCI6IlNZU1RFTSIsImV4cCI6MTU5MTg5OTkyOX0.JR0ppLZfk2ung3mcsTv-JKWhVcTYE5bwXumOebPOCMWkp30wOsEzkB6Vxuh89wGaKA7jIU5H61fZJRc_CGYQrw'
 
 const api = (() => {
     let apiobj = {}
@@ -28,6 +28,9 @@ const api = (() => {
     })
 	Object.keys(apilist.post).forEach(cur => {
         apiobj[cur] = data => {
+			uni.showLoading({
+				title: '加载中'
+			});
             return uni.request({
 				header:{
 					'content-type': 'application/json',
@@ -39,6 +42,7 @@ const api = (() => {
                 data:{...data}
             }).then(res => {
 				if (res[1].statusCode !== 200) {
+					uni.hideLoading();
 					uni.showToast({
 					    title: '数据请求异常，请重试',
 						image:'/static/warning.png',
@@ -46,6 +50,7 @@ const api = (() => {
 					});
 					return Promise.reject(res[0]);
 				}
+				uni.hideLoading();
 				return res[1] //自己根据后端返回数据结构习惯，抛出需要的数据
 			})
         }

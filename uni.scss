@@ -16,6 +16,28 @@
 @import 'uview-ui/theme.scss';
 
 /* 颜色变量 */
+/* ------------------------------------------------------- */
+/* Color Theme Swatches in Hex */
+$Neutral-Blue-1-hex: #FCFFF5;
+$Neutral-Blue-2-hex: #D1DBBD;
+$Neutral-Blue-3-hex: #91AA9D;
+$Neutral-Blue-4-hex: #3E606F;
+$Neutral-Blue-5-hex: #193441;
+
+/* Color Theme Swatches in RGBA */
+$Neutral-Blue-1-rgba: rgba(251,255,244, 1);
+$Neutral-Blue-2-rgba: rgba(209,219,188, 1);
+$Neutral-Blue-3-rgba: rgba(144,170,156, 1);
+$Neutral-Blue-4-rgba: rgba(61,96,110, 1);
+$Neutral-Blue-5-rgba: rgba(24,52,65, 1);
+
+/* Color Theme Swatches in HSLA */
+$Neutral-Blue-1-hsla: hsla(78, 100, 98, 1);
+$Neutral-Blue-2-hsla: hsla(80, 29, 80, 1);
+$Neutral-Blue-3-hsla: hsla(148, 12, 61, 1);
+$Neutral-Blue-4-hsla: hsla(198, 28, 33, 1);
+$Neutral-Blue-5-hsla: hsla(199, 44, 17, 1);
+/* ---------------------------------------------------- */
 
 /* 行为相关颜色 */
 $uni-color-primary: #007aff;

@@ -7,5 +7,11 @@ export default {
 	onLoad() {
 		
 	},
-	methods: {}
+	methods: {
+		login() {
+			uni.redirectTo({
+			    url: '/pages/login/login'
+			});
+		}
+	}
 };

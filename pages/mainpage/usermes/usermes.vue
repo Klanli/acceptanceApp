@@ -1,6 +1,6 @@
 <template>
 	<view class="user_content">
-		我的信息
+		<u-button @click="login">登录页</u-button>
 	</view>
 </template>
 

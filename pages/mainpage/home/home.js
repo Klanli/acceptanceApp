@@ -1,7 +1,8 @@
 export default {
 	data() {
 		return {
-
+			show: true,
+			mode: 'date'
 		};
 	},
 	onLoad() {
@@ -17,7 +18,7 @@ export default {
 					drugSpec: '',
 					drugName: '',
 					offset:0,
-					limit:10
+					limit:10000
 				}
 			  }
 			let res = await this.$api.POST_TEST(param)	
