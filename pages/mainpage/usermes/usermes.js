@@ -9,7 +9,7 @@ export default {
 	},
 	methods: {
 		login() {
-			uni.redirectTo({
+			uni.navigateTo({
 			    url: '/pages/login/login'
 			});
 		}

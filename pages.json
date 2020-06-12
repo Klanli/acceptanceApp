@@ -14,6 +14,12 @@
 			}
 		},
 		{
+			"path": "pages/ProjectInfo/ProjectInfo",
+			"style": {
+				"navigationBarTitleText": "建设工程详情"
+			}
+		},
+		{
 			"path": "pages/mainpage/home/home",
 			"style": {
 				"navigationBarTitleText": "建设工程消防验收"

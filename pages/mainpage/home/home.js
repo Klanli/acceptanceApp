@@ -11,10 +11,10 @@ export default {
 				{label:'待验收',value:'222'}
 			],
 			list: [
-				{title:'热门'},
-				{title:'热门'},
-				{title:'热门'},
-				{title:'热门'},
+				{title:'热门1'},
+				{title:'热门2'},
+				{title:'热门3'},
+				{title:'热门4'},
 			]
 		};
 	},
@@ -22,6 +22,11 @@ export default {
 
 	},
 	methods: {
+		check(val) {
+			uni.navigateTo({
+			    url: `/pages/ProjectInfo/ProjectInfo?param=${val.title}`
+			});
+		},
 		async valChange() {
 			let param = {
 				'code': '9001',

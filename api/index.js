@@ -17,7 +17,8 @@ const api = (() => {
 					uni.showToast({
 					    title: '数据请求异常，请重试',
 						image:'/static/warning.png',
-					    duration: 1000
+					    duration: 1000,
+						mask: true
 					});
 					return Promise.reject(res[0]);
 				}
@@ -46,7 +47,8 @@ const api = (() => {
 					uni.showToast({
 					    title: '数据请求异常，请重试',
 						image:'/static/warning.png',
-					    duration: 1000
+					    duration: 1000,
+						mask: true
 					});
 					return Promise.reject(res[0]);
 				}

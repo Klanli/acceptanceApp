@@ -1,0 +1,45 @@
+<template>
+	<div>
+		<u-collapse :item-style="itemStyle">
+			<u-collapse-item title="项目基本信息">
+				<view class="collapse-item">
+					<view style="padding:4px 0" v-for="(item,index) in baseInfo" :key='index'>
+						<span>{{item.label}}</span>
+						<span>{{item.value}}</span>
+					</view>
+				</view>
+			</u-collapse-item>
+			<u-collapse-item title="建(构)筑信息">
+				<view>
+					<u-tabs style="background-color: #ccc;" :list="list" :is-scroll="false" :current="current" @change="changetab"></u-tabs>
+					<view style="padding:4px 0px 4px 18px;background-color: #ccc;" v-for="(item,index) in basetabInfo" :key='index'>
+						<span>{{item.label}}</span>
+						<span>{{item.value}}</span>
+					</view>
+				</view>
+			</u-collapse-item>
+			<u-collapse-item title="建筑消防设施">
+				<view class="collapse-item">
+					<u-checkbox-group :wrap='true'>
+						<u-checkbox 
+							style="margin: 4px 0;"
+							v-model="item.checked" 
+							v-for="(item, index) in checkboxlist" :key="index" 
+							:name="item.name"
+						>{{item.name}}</u-checkbox>
+					</u-checkbox-group>
+				</view>
+			</u-collapse-item>
+		</u-collapse>
+	</div>
+</template>
+
+<script src='./ProjectInfo.js'>
+</script>
+
+<style lang='less' scoped>
+.collapse-item {
+	background-color: #ccc;
+	padding-left: 18px;
+}
+</style>

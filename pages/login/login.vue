@@ -15,7 +15,7 @@
 
 <script src='./login.js'></script>
 
-<style lang="less">
+<style lang="less" scoped>
 	.login_content{
 		height: calc(100vh);
 		text-align: center;

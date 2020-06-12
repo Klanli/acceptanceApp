@@ -21,7 +21,7 @@
 					<u-button plain size='mini' type="primary">新增 +</u-button>
 				</view>
 			</view>
-			<u-section v-for="(item,index) in list" :key="index" font-size='36' :title="item.title" sub-title=""></u-section>
+			<u-section v-for="(item,index) in list" :key="index" font-size='36' :title="item.title" :show-line='false' sub-title="查看详情" @click="check(item)"></u-section>
 		</view>
 	</view>
 </template>
