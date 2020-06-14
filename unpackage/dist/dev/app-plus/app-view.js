@@ -3898,14 +3898,14 @@ var render = function() {
                     "u-collapse",
                     { attrs: { _i: "4-" + $30 } },
                     _vm._l(_vm._$g(5 + "-" + $30, "f"), function(
-                      item,
-                      index,
+                      cur,
+                      ind,
                       $21,
                       $31
                     ) {
                       return _c(
                         "u-collapse-item",
-                        { key: item, attrs: { _i: "5-" + $30 + "-" + $31 } },
+                        { key: cur, attrs: { _i: "5-" + $30 + "-" + $31 } },
                         [_vm._v(_vm._$g("5-" + $30 + "-" + $31, "t0-0"))]
                       )
                     }),

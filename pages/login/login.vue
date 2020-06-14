@@ -1,15 +1,69 @@
 <template>
 	<view class="login_content">
-		<p>登 录</p>
-		<u-form ref="uForm">
-			<u-form-item label="姓名" prop="name">
-				<u-input v-model="form.name" type="text"/>
-			</u-form-item>
-			<u-form-item label="密码" prop="name">
-				<u-input type="password" v-model="form.pasd" />
-			</u-form-item>
+		<u-avatar src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=4146511713,1144796055&fm=11&gp=0.jpg" size="220"></u-avatar>
+		<p>建设工程消防验收</p>
+		<u-tabs style="width: 260px;" bg-color='#F5F5F9' bar-width='220' :list="list" :is-scroll="false" :current="current" @change="change"></u-tabs>
+		<view v-if="current == 0" style="width: 80vw;">
+			<u-cell-group>
+				<u-field
+				style="border: 1px solid #ccc; border-radius: 4px;margin: 20px 0;"
+					label-width='0'
+					v-model="form.name"
+					placeholder="账户名/手机号"
+				>
+				</u-field>
+			</u-cell-group>
+			<u-cell-group>
+				<u-field
+				style="border: 1px solid #ccc; border-radius: 4px;margin: 20px 0;"
+					label-width='0'
+					v-model="form.pasd"
+					placeholder="密码"
+					type="password"
+				>
+				</u-field>
+			</u-cell-group>
+			<u-checkbox-group style="width: 80vw;margin: 0px 0px 20px;">
+				<u-checkbox 
+					v-model="autologin" 
+					name="autologin"
+				>自动登录</u-checkbox>
+			</u-checkbox-group>
 			<u-button type="primary" @click="login">登录</u-button>
-		</u-form>
+		</view>
+		<view v-if="current == 1" style="width: 80vw;">
+			<u-cell-group>
+				<u-field
+				style="border: 1px solid #ccc; border-radius: 4px;margin: 20px 0;"
+					label-width='0'
+					v-model="form.phone"
+					placeholder="手机号"
+				>
+				</u-field>
+			</u-cell-group>
+			<u-cell-group>
+				<u-field
+				style="border: 1px solid #ccc; border-radius: 4px;margin: 20px 0;"
+					label-width='0'
+					v-model="form.code"
+					placeholder="请填写验证码"
+				>
+				<u-button size="mini" slot="right" type="primary" @tap="getCode">{{codeText}}</u-button>
+				</u-field>
+				<u-verification-code ref="uCode" @change="codeChange"></u-verification-code>
+			</u-cell-group>
+			<u-checkbox-group style="width: 80vw;margin: 0px 0px 20px;">
+				<u-checkbox 
+					v-model="autologin" 
+					name="autologin"
+				>自动登录</u-checkbox>
+			</u-checkbox-group>
+			<u-button type="primary" @click="login">登录</u-button>
+		</view>
+		<view class="bottom_mes">
+			<p>昆明市住房和城乡建设局</p>
+			<p>技术支持：华龙万相智慧安全科技（成都）有限公司</p>
+		</view>
 	</view>
 </template>
 
@@ -17,22 +71,23 @@
 
 <style lang="less" scoped>
 	.login_content{
-		height: calc(100vh);
+		background-color: #F5F5F9;
+		height: calc(100vh - 44px);
 		text-align: center;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		p{
-			font-size: 28px;
+		position: relative;
+		&>p{
+			font-size: 16px;
 			font-weight: 600;
 			color: #3E606F;
-			margin: 10vh 0;
+			margin: 2vh 0;
 		}
-		.u-form{
-			width: 70vw;
-			.u-form-item{
-				margin: 4vh 0;
-			}
+		&>.bottom_mes{
+			color: #939393;
+			position: absolute;
+			bottom: 2vh;
 		}
 	}
 </style>

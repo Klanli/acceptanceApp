@@ -10,7 +10,7 @@
 			"path": "pages/login/login",
 			"style": {
 				"navigationBarTitleText": "",
-				"navigationBarBackgroundColor":"#fff"
+				"navigationBarBackgroundColor":"#F5F5F9"
 			}
 		},
 		{
@@ -40,7 +40,7 @@
 		{
 			"path": "pages/mainpage/usermes/usermes",
 			"style": {
-				"navigationBarTitleText": "我的信息"
+				"navigationBarTitleText": "个人信息"
 			}
 		}
 	],

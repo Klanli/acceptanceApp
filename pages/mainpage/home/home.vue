@@ -2,7 +2,7 @@
 	<view class="home_content">
 		<view class="top_mes">
 			<text>完成率</text>
-			<text style="font-size: 36px;font-weight: 600;">{{ percent }}</text>%
+			<u-count-to bold font-size='70' :start-val="0" :end-val="70"></u-count-to>%
 			<u-line-progress 
 			style="margin-top: 20px;"
 			active-color="#2979ff" 
@@ -21,7 +21,9 @@
 					<u-button plain size='mini' type="primary">新增 +</u-button>
 				</view>
 			</view>
-			<u-section v-for="(item,index) in list" :key="index" font-size='36' :title="item.title" :show-line='false' sub-title="查看详情" @click="check(item)"></u-section>
+			<u-cell-group>
+				<u-cell-item v-for="(item,index) in list" :key='index' :title="item.title" value="查看详情" @tap='check(item)'></u-cell-item>
+			</u-cell-group>
 		</view>
 	</view>
 </template>
@@ -32,6 +34,7 @@
 	.home_content {
 		text-align: center;
 		height: calc(100vh - 44px - 50px);
+		background-color: #F5F5F9;
 		margin: 0;
 		padding: 0;
 		display: flex;
@@ -54,15 +57,11 @@
 			width: 100vw;
 			.title{
 				padding: 0 10px;
-				background: #ccc;
+				background: #dfdfdf;
 				height: 40px;
 				display: flex;
 				align-items: center;
 				justify-content: space-between;
-			}
-			.u-section{
-				height: 40px;
-				border-bottom: 1px solid #ccc;
 			}
 		}
 	}

@@ -1,7 +1,8 @@
 <template>
 	<view class="engin_content">
-		工程项目
-		<test></test>
+		<u-cell-group>
+			<u-cell-item v-for="(item,index) in list" :key='index' :title="item.title" value="查看详情" @tap='check(item)'></u-cell-item>
+		</u-cell-group>
 	</view>
 </template>
 

@@ -1,13 +1,9 @@
 <template>
 	<view class="assess_content">
-		<u-collapse>
-			<u-collapse-item :title="item.head" v-for="(item, index) in itemList" :key="index">
+		<u-collapse :item-style="itemStyle">
+			<u-collapse-item :open='false' :title="item.head" v-for="(item, index) in itemList" :key="index">
 				<view>
-					<u-collapse>
-						<u-collapse-item :title="item.head" v-for="(item, index) in itemList" :key="index">
-							{{item.body}}
-						</u-collapse-item>
-					</u-collapse>
+					asdasfsdf
 				</view>
 			</u-collapse-item>
 		</u-collapse>

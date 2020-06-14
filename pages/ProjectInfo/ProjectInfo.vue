@@ -11,8 +11,8 @@
 			</u-collapse-item>
 			<u-collapse-item title="建(构)筑信息">
 				<view>
-					<u-tabs style="background-color: #ccc;" :list="list" :is-scroll="false" :current="current" @change="changetab"></u-tabs>
-					<view style="padding:4px 0px 4px 18px;background-color: #ccc;" v-for="(item,index) in basetabInfo" :key='index'>
+					<u-tabs bg-color=' #ccc' :list="list" :is-scroll="false" :current="current" @change="changetab"></u-tabs>
+					<view class="tabView" v-for="(item,index) in basetabInfo" :key='index'>
 						<span>{{item.label}}</span>
 						<span>{{item.value}}</span>
 					</view>
@@ -41,5 +41,9 @@
 .collapse-item {
 	background-color: #ccc;
 	padding-left: 18px;
+}
+.tabView{
+	padding:4px 0px 4px 18px;
+	background-color: #ccc;
 }
 </style>
