@@ -20,6 +20,18 @@
 			}
 		},
 		{
+			"path": "pages/Record/Record",
+			"style": {
+				"navigationBarTitleText": "验收记录"
+			}
+		},
+		{
+			"path": "pages/Require/Require",
+			"style": {
+				"navigationBarTitleText": "验收要求"
+			}
+		},
+		{
 			"path": "pages/mainpage/home/home",
 			"style": {
 				"navigationBarTitleText": "建设工程消防验收"
