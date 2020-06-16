@@ -24,6 +24,16 @@
 			"style": {
 				"navigationBarTitleText": "验收记录"
 			}
+		},{
+			"path": "pages/Problem/Problem",
+			"style": {
+				"navigationBarTitleText": "验收常见问题"
+			}
+		},{
+			"path": "pages/buildInfo/BuildInfo",
+			"style": {
+				"navigationBarTitleText": "建筑信息"
+			}
 		},
 		{
 			"path": "pages/Require/Require",
