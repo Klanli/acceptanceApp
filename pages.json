@@ -47,12 +47,12 @@
 				"navigationBarTitleText": "建设工程消防验收"
 			}
 		},
-		{
-			"path": "pages/mainpage/engin/engin",
-			"style": {
-				"navigationBarTitleText": "工程项目"
-			}
-		},
+		// {
+		// 	"path": "pages/mainpage/engin/engin",
+		// 	"style": {
+		// 		"navigationBarTitleText": "工程项目"
+		// 	}
+		// },
 		{
 			"path": "pages/mainpage/assess/assess",
 			"style": {
@@ -84,7 +84,7 @@
 				"text": "首页"
 			},
 			{
-				"pagePath": "pages/mainpage/engin/engin",
+				"pagePath": "pages/ProjectInfo/ProjectInfo",
 				"iconPath": "static/img/tabbar/engin.png",
 				"selectedIconPath": "static/img/tabbar/enginactive.png",
 				"text": "工程项目"

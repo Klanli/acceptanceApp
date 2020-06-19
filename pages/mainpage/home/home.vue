@@ -2,7 +2,7 @@
 	<view class="home_content">
 		<view class="top_mes">
 			<text>完成率</text>
-			<u-count-to bold font-size='70' :start-val="0" :end-val="70"></u-count-to>%
+			<u-count-to bold font-size='70' :start-val="0" :end-val="percent"></u-count-to>%
 			<u-line-progress 
 			style="margin-top: 20px;"
 			active-color="#2979ff" 
@@ -17,12 +17,12 @@
 		<view class="buttom_list">
 			<view class="title">
 				<text style="font-size: 20px;">工程项目</text>
-				<view>
+				<!-- <view>
 					<u-button plain size='mini' type="primary">新增 +</u-button>
-				</view>
+				</view> -->
 			</view>
 			<u-cell-group>
-				<u-cell-item v-for="(item,index) in list" :key='index' :title="item.title" value="查看详情" @tap='check(item)'></u-cell-item>
+				<u-cell-item v-for="(item,index) in list" :key='index' :title="item.label" value="查看统计" @tap='check(item.value)'></u-cell-item>
 			</u-cell-group>
 		</view>
 	</view>
@@ -42,7 +42,7 @@
 		justify-content: start;
 		align-items: center;
 		.top_mes{
-			width: 80vw;
+			width: 90vw;
 			padding-top: 24px;
 			padding-bottom: 16px;
 			.option_mes{

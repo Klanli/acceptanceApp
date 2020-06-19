@@ -1,5 +1,9 @@
 <template>
 	<div>
+		<view class="selectList">
+		<u-button @click="onProjectList()">选择项目</u-button>
+			<u-select v-model="show" mode="single-column" :list="projectList" @confirm="confirm"></u-select>
+		</view>
 		<u-collapse :item-style="itemStyle">
 			<u-collapse-item title="项目基本信息">
 				<view class="collapse-item">
@@ -13,14 +17,16 @@
 				<view>
 					<u-tabs bg-color=' #ccc' :list="list" :is-scroll="false" :current="current" @change="changetab"></u-tabs>
 					<view class="tabView" v-for="(item,index) in basetabInfo" :key='index'>
-						<span>{{item.label}}</span>
-						<span>{{item.value}}</span>
+						<view class="" v-for="(i,ind) in item" :key='ind'>
+							<span>{{i.label}}</span>
+						<span>{{i.value}}</span>
+						</view>
 					</view>
 				</view>
 			</u-collapse-item>
 			<u-collapse-item title="建筑消防设施">
 				<view class="collapse-item">
-					<u-checkbox-group :wrap='true'>
+					<u-checkbox-group :wrap='true' disabled>
 						<u-checkbox 
 							style="margin: 4px 0;"
 							v-model="item.checked" 
@@ -47,3 +53,5 @@
 	background-color: #ccc;
 }
 </style>
+
+
