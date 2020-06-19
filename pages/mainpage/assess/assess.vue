@@ -5,11 +5,11 @@
 			<u-select v-model="show" mode="single-column" :list="projectList" @confirm="confirm"></u-select>
 		</view>
 		<uni-collapse class="assess_content" :accordion="true">
- 			<uni-collapse-item style="background-color: #8f8f8f;" v-for="item in accordion" :key="item.id" :title="item.title" :show-animation="item.animation">
+ 			<uni-collapse-item style="background-color: #8f8f8f;" v-for="(item,index) in accordion" :key="index" :title="item.title" :show-animation="item.animation">
  				<uni-collapse :accordion="true">
- 					<uni-collapse-item v-for="item in accordion" :key="item.id" :title="'2366' + item.title" :show-animation="item.animation">
+ 					<uni-collapse-item v-for="(i,index) in item.children" :key="index" :title="i.title" :show-animation="item.animation">
 						<u-cell-group>
-							<u-cell-item :title="item.content" @click='assess'></u-cell-item>
+							<u-cell-item :title="j.title" @click='assess' v-for="(j,index) in i.children" :key='index'></u-cell-item>
 							<u-cell-item title="会员等级" value="新版本" @click='assess'></u-cell-item>
 						</u-cell-group>
  					</uni-collapse-item>

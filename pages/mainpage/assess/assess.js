@@ -20,28 +20,82 @@ export default {
 					animation: true
 				}
 			],
-			projectList:[],
-			show:false
+			projectList: [],
+			show: false
 		}
 	},
-	onLoad(){
+	onLoad() {
 		this.getProjects()
 	},
 	methods: {
 		change(e) {},
-		
-		async getList(id){ //请求数据
+
+		async getList(id) { //请求数据
 			let param = {
 				projectId: id
 			}
 			let res = await this.$api.POST_getDocumentByProjectId(param)
 			if (res.httpStatus == 200) {
-				console.log(res)
-				}
+				let list1 = res.result.tasksWithEvaluation.primaryTitles.map(item => {
+					console.log(item)
+					return {
+						finishTasksNum: item.finishTasksNum,
+						totalTasksNum: item.totalTasksNum,
+						title: item.titleName,
+						animation: true,
+						id:item.standardPrimaryTitleId,
+						children: item.secondaryTitles.map(i => {
+							return {
+								finishTasksNum: i.finishTasksNum,
+								totalTasksNum: i.totalTasksNum,
+								title: i.titleName,
+								animation: true,
+								id:i.standardSecondaryTitleId,
+								children: i.checklistList.map(j => {
+									return {
+										standardId: j.standardId,
+										title: j.content,
+										id:j.standardChecklistId,
+									}
+
+								})
+							}
+						})
+					}
+				})
+			  let list2 = res.result.tasksWithLiteratureReview.primaryTitles.map(item => {
+					return {
+						finishTasksNum: item.finishTasksNum,
+						totalTasksNum: item.totalTasksNum,
+						title: item.titleName,
+						animation: true,
+						id:item.standardPrimaryTitleId,
+						children: item.secondaryTitles.map(i => {
+							return {
+								finishTasksNum: i.finishTasksNum,
+								totalTasksNum: i.totalTasksNum,
+								title: i.titleName,
+								animation: true,
+								id:i.standardSecondaryTitleId,
+								children: i.checklistList.map(j => {
+									return {
+										standardId: j.standardId,
+										title: j.content,
+										id:j.standardChecklistId,
+									}
+
+								})
+							}
+						})
+					}
+				})
+				this.accordion = list1.concat(list2)
+				console.log(this.accordion)
+			}
 		},
 		assess() {
 			uni.navigateTo({
-			    url: `/pages/Record/Record`
+				url: `/pages/Record/Record`
 			});
 		},
 		onProjectList() {
@@ -65,14 +119,14 @@ export default {
 							return {
 								label: item.projectName,
 								value: item.projectId + '*' + item.acContentId + '*' + item.standardId
-		
+
 							}
 						})
-		
+
 					}
 				}
 			})
-		
+
 		},
 		//选中项目
 		confirm(e) {
@@ -84,7 +138,7 @@ export default {
 			// this.getAccept(contentId)
 			// this.getFacilities(projectId, standardId)
 			this.getList(projectId)
-		
+
 		},
 		//切割字符串
 		splitStr(str) {

@@ -11,7 +11,7 @@
 		<view>
 			<text>检查部位:</text>
 			<view>
-				<u-button type="primary" size="mini">抽样</u-button>
+				<u-button type="primary" size="mini" @click="toBuildInfo()">抽样</u-button>
 			</view>
 		</view>
 		<textarea class="textarea" auto-height />
@@ -22,7 +22,7 @@
 		<view>
 			<text>验收记录:</text>
 			<view>
-				<u-button type="primary" size="mini">问题</u-button>
+				<u-button type="primary" size="mini" @click="toProblem()">问题</u-button>
 			</view>
 		</view>
 		<textarea class="textarea" style="min-height: 22vh;" auto-height />
