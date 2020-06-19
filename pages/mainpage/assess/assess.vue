@@ -1,5 +1,10 @@
 <template>
- 		<uni-collapse class="assess_content" :accordion="true">
+	<view class="assess_content">
+		<u-icon name="list-dot" color="#2979ff" size="40" @click="onProjectList()" class="choseProjectIcon"></u-icon>
+		<view class="selectList">
+			<u-select v-model="show" mode="single-column" :list="projectList" @confirm="confirm"></u-select>
+		</view>
+		<uni-collapse class="assess_content" :accordion="true">
  			<uni-collapse-item style="background-color: #8f8f8f;" v-for="item in accordion" :key="item.id" :title="item.title" :show-animation="item.animation">
  				<uni-collapse :accordion="true">
  					<uni-collapse-item v-for="item in accordion" :key="item.id" :title="'2366' + item.title" :show-animation="item.animation">
@@ -11,10 +16,20 @@
  				</uni-collapse>
  			</uni-collapse-item>
  		</uni-collapse>
+	</view>
+ 		
 </template>
  
 <script src='./assess.js'>
 </script>
 
 <style lang="less" scoped>
+	.assess_content{
+		.choseProjectIcon{
+			position: absolute;
+			right: 20upx;
+			bottom: 40upx;
+			z-index: 20;
+		}
+	}
 </style>

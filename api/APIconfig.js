@@ -14,5 +14,6 @@ export default {
 		POST_buildType:'dictionary/getAc_1_jie_gou_type',  //验收内容 -> 获取结构类型
 		POST_refractoryLevelId:'dictionary/getAc_1_nai_huo_level',  //验收内容 -> 获取耐火等级
 		POST_getMenus:'ac/getMenus',  //验收内容 -> 获取消防设施一级菜单
+		POST_getDocumentByProjectId:'app/task/getDocumentByProjectId',  //根据项目获取现场评定 + 资料审查内容
 	}
 }

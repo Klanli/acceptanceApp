@@ -1,7 +1,8 @@
 <template>
-	<div>
+	<view class="projectInfo_content">
+		<u-icon name="list-dot" color="#2979ff" size="40" @click="onProjectList()" class="choseProjectIcon"></u-icon>
+		<!-- <u-button @click="onProjectList()">选择项目</u-button> -->
 		<view class="selectList">
-		<u-button @click="onProjectList()">选择项目</u-button>
 			<u-select v-model="show" mode="single-column" :list="projectList" @confirm="confirm"></u-select>
 		</view>
 		<u-collapse :item-style="itemStyle">
@@ -37,13 +38,22 @@
 				</view>
 			</u-collapse-item>
 		</u-collapse>
-	</div>
+	</view>
 </template>
 
 <script src='./ProjectInfo.js'>
 </script>
 
 <style lang='less' scoped>
+	.projectInfo_content{
+		
+	.choseProjectIcon{
+		position: absolute;
+		right: 20upx;
+		bottom: 40upx;
+		z-index: 20;
+	}
+	}
 .collapse-item {
 	background-color: #ccc;
 	padding-left: 18px;
