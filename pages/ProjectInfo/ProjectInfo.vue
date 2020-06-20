@@ -5,8 +5,8 @@
 		<view class="selectList">
 			<u-select v-model="show" mode="single-column" :list="projectList" @confirm="confirm"></u-select>
 		</view>
-		<u-collapse :item-style="itemStyle"  @change='OnBuild'>
-			<u-collapse-item title="项目基本信息" index='1'>
+		<u-collapse :item-style="itemStyle" :head-style="headsty"  @change='OnBuild'>
+			<u-collapse-item class="collitem" title="项目基本信息" index='1'>
 				<view class="collapse-item">
 					<view style="padding:4px 0" v-for="(item,index) in baseInfo" :key='index'>
 						<span>{{item.label}}</span>
@@ -14,9 +14,9 @@
 					</view>
 				</view>
 			</u-collapse-item>
-			<u-collapse-item title="建(构)筑信息" index='2'>
+			<u-collapse-item class="collitem" title="建(构)筑信息" index='2'>
 				<view>
-					<u-tabs bg-color=' #ccc' :list="list" :is-scroll="false" :current="current" @change="changetab"></u-tabs>
+					<u-tabs :list="list" :is-scroll="false" :current="current" @change="changetab"></u-tabs>
 					<view class="tabView" v-for="(item,index) in basetabInfo" :key='index'>
 						<view class="" v-for="(i,ind) in item" :key='ind'>
 							<span>{{i.label}}</span>
@@ -25,7 +25,7 @@
 					</view>
 				</view>
 			</u-collapse-item>
-			<u-collapse-item title="建筑消防设施" index='3'>
+			<u-collapse-item class="collitem" title="建筑消防设施" index='3'>
 				<view class="collapse-item">
 					<u-checkbox-group :wrap='true' disabled>
 						<u-checkbox 
@@ -46,21 +46,34 @@
 
 <style lang='less' scoped>
 	.projectInfo_content{
-		
+		height: calc(100vh - 44px - 50px);
+		background-color: #F5F5F9;
 	.choseProjectIcon{
-		position: absolute;
-		right: 20upx;
-		bottom: 66upx;
-		z-index: 100;
+		padding: 10px;
+		border: 1px solid #ccc;
+		background-color: #fff;
+		border-radius: 60px;
+		position: fixed;
+		right: 8px;
+		bottom: 58px;
+		z-index: 99999;
 	}
 	}
-.collapse-item {
-	background-color: #ccc;
+	.collitem{
+		background-color: #2979FF!important;
+		color: #fff!important;
+		.u-collapse-head{
+			color: #fff!important;
+		}
+	}
+.collapse-item{
+	background-color: #fff;
+	min-height: 400px;
 	padding-left: 18px;
 }
 .tabView{
 	padding:4px 0px 4px 18px;
-	background-color: #ccc;
+	background-color: #fff;
 }
 </style>
 

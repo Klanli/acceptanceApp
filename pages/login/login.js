@@ -7,11 +7,7 @@ export default {
 				phone: '',
 				code: ''
 			},
-			list: [{
-				name: '账户密码登录'
-			}, {
-				name: '手机号登录'
-			}],
+			list: [{name: '账户密码登录'}],
 			current: 0,
 			codeText: '',
 			autologin: false

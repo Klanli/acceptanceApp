@@ -4,12 +4,12 @@
 		<view class="selectList">
 			<u-select v-model="show" mode="single-column" :list="projectList" @confirm="confirm"></u-select>
 		</view>
-		<uni-collapse class="assess_content" :accordion="true">
- 			<uni-collapse-item style="background-color: #8f8f8f;" v-for="(item,index) in accordion" :key="index" :title="item.title" :show-animation="item.animation">
+		<uni-collapse :accordion="true">
+ 			<uni-collapse-item class="firstmenu" v-for="(item,index) in accordion" :key="index" :title="item.title" :show-animation="item.animation">
  				<uni-collapse :accordion="true">
- 					<uni-collapse-item v-for="(i,index) in item.children" :key="index" :title="i.title" :show-animation="item.animation">
+ 					<uni-collapse-item class="secmenu" v-for="(i,index) in item.children" :key="index" :title="i.title" :show-animation="item.animation">
 						<u-cell-group>
-							<u-cell-item :title="j.title" @click='assess(j)' v-for="(j,index) in i.children" :key='index'></u-cell-item>
+							<u-cell-item class="thrdmenu" :title="j.title" @click='assess(j)' v-for="(j,index) in i.children" :key='index'></u-cell-item>
 							<!-- <u-cell-item title="会员等级" value="新版本" @click='assess'></u-cell-item> -->
 						</u-cell-group>
  					</uni-collapse-item>
@@ -17,7 +17,6 @@
  			</uni-collapse-item>
  		</uni-collapse>
 	</view>
- 		
 </template>
  
 <script src='./assess.js'>
@@ -25,11 +24,24 @@
 
 <style lang="less" scoped>
 	.assess_content{
+		height: calc(100vh - 44px - 50px);
+		background-color: #F5F5F9;
+		.firstmenu{
+			background-color: #2979FF;
+			color: #fff;
+			.secmenu{
+				background-color: #00aaff;
+			}
+		}
 		.choseProjectIcon{
-			position: absolute;
-			right: 20upx;
-			bottom: 40upx;
-			z-index: 20;
+			padding: 10px;
+			border: 1px solid #ccc;
+			border-radius: 60px;
+			background-color: #fff;
+			position: fixed;
+			right: 8px;
+			bottom: 58px;
+			z-index: 9999;
 		}
 	}
 </style>

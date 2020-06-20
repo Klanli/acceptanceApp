@@ -57,7 +57,8 @@
 			width: 100vw;
 			.title{
 				padding: 0 10px;
-				background: #dfdfdf;
+				background: #2979ff;
+				color: #fff;
 				height: 40px;
 				display: flex;
 				align-items: center;

@@ -3,7 +3,11 @@ export default {
 		return {
 			itemStyle: {
 				backgroundColor: '#b3b3b3',
-				borderBottom: '1px solid #343440',
+				color: '#fff',
+				borderBottom: '1px solid #eee',
+			},
+			headsty: {
+				color: '#fff'
 			},
 			baseInfo: [{
 					label: '工程名称：',
