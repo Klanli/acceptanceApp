@@ -5,8 +5,8 @@
 		<view class="selectList">
 			<u-select v-model="show" mode="single-column" :list="projectList" @confirm="confirm"></u-select>
 		</view>
-		<u-collapse :item-style="itemStyle">
-			<u-collapse-item title="项目基本信息">
+		<u-collapse :item-style="itemStyle"  @change='OnBuild'>
+			<u-collapse-item title="项目基本信息" index='1'>
 				<view class="collapse-item">
 					<view style="padding:4px 0" v-for="(item,index) in baseInfo" :key='index'>
 						<span>{{item.label}}</span>
@@ -14,7 +14,7 @@
 					</view>
 				</view>
 			</u-collapse-item>
-			<u-collapse-item title="建(构)筑信息">
+			<u-collapse-item title="建(构)筑信息" index='2'>
 				<view>
 					<u-tabs bg-color=' #ccc' :list="list" :is-scroll="false" :current="current" @change="changetab"></u-tabs>
 					<view class="tabView" v-for="(item,index) in basetabInfo" :key='index'>
@@ -25,7 +25,7 @@
 					</view>
 				</view>
 			</u-collapse-item>
-			<u-collapse-item title="建筑消防设施">
+			<u-collapse-item title="建筑消防设施" index='3'>
 				<view class="collapse-item">
 					<u-checkbox-group :wrap='true' disabled>
 						<u-checkbox 
@@ -50,8 +50,8 @@
 	.choseProjectIcon{
 		position: absolute;
 		right: 20upx;
-		bottom: 40upx;
-		z-index: 20;
+		bottom: 66upx;
+		z-index: 100;
 	}
 	}
 .collapse-item {

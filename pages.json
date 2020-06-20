@@ -42,6 +42,17 @@
 			}
 		},
 		{
+			"path": "pages/acceptMethods/AcceptMethods",
+			"style": {
+				"navigationBarTitleText": "验收方法"
+			}
+		},{
+			"path": "pages/rules/Rule",
+			"style": {
+				"navigationBarTitleText": "验收规则"
+			}
+		},
+		{
 			"path": "pages/mainpage/home/home",
 			"style": {
 				"navigationBarTitleText": "建设工程消防验收"

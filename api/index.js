@@ -45,13 +45,24 @@ uni.getStorage({
 			});
 			let header;
 			if(sid){
-				header={
+				if(cur=='POST_submitRecode'){
+					header={
+						// 'content-type': 'application/json',
+						'Accept': 'application/json, */*',
+						// 'Access-Token': Token
+						'Content-type': 'application/json', //设置请求参数格式
+						'sid':sid
+					}
+				}else{
+					header={
 					// 'content-type': 'application/json',
 					'Accept': 'application/json, */*',
 					// 'Access-Token': Token
 					'Content-type': 'application/x-www-form-urlencoded', //设置请求参数格式
 					'sid':sid
 				}
+				}
+				
 			}else{
 				header={
 					// 'content-type': 'application/json',

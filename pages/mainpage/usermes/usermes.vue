@@ -1,5 +1,6 @@
 <template>
 	<view class="user_content">
+		<u-toast ref="uToast" />
 		<view class="user_avatar user_mes">
 			<u-avatar :src="src" :size='150' mode="square" @click="login"></u-avatar>
 			<view style="padding-top: 26px;">
@@ -8,7 +9,13 @@
 			</view>
 		</view>
 		<u-cell-group style="margin-top: 10px;">
-			<u-cell-item icon="lock-fill" title="登录密码" label="*******" value='修改' :arrow="true" arrow-direction="right"></u-cell-item>
+			<u-cell-item icon="lock-fill" title="登录密码" label="*******" value='修改' :arrow="true" arrow-direction="right" @click='open'></u-cell-item>
+			<u-modal v-model="show" :mask-close-able='maskCloseAble' :show-cancel-button='showCancelButton' @confirm="confirm">
+						<view class="slot-content">
+							<u-input v-model="pwd" :border="border" placeholder='请输入新密码' style="width: 90%;margin:20upx;"/>
+						</view>
+					</u-modal>
+
 			<u-cell-item icon="checkmark-circle-fill" title="登录状态" label="已登录" :arrow="false"></u-cell-item>
 		</u-cell-group>
 		<u-cell-group style="margin-top: 10px;">
@@ -32,18 +39,21 @@
 		margin: 0;
 		padding: 0;
 		background-color: #F5F5F9;
-		.user_avatar{
+
+		.user_avatar {
 			text-align: start;
 			height: 120px;
 			display: flex;
 			align-items: center;
 			background-color: #fff;
-			.u-avatar{
+
+			.u-avatar {
 				margin-right: 8vw;
 				margin-left: 6vw;
 			}
-			&>view{
-				p{
+
+			&>view {
+				p {
 					margin: 6rpx 0;
 				}
 			}

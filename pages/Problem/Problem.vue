@@ -1,7 +1,12 @@
 <template>
 	<view class="problem_content">
-		<view class="text" v-html="text">
-			
+		<view class="text" v-for="(item,index) in textList">
+			<view class="textHeader">
+				{{item.tit}}
+			</view>
+			<view class="textContent">
+				{{item.con}}
+			</view>
 		</view>
 	</view>
 </template>

@@ -57,7 +57,7 @@ export default {
 					},
 					{
 						label: '结构类型：',
-						value: '死而复生如火如荼后台和肉'
+						value: ''
 					},
 					{
 						label: '耐火等级：',
@@ -98,7 +98,7 @@ export default {
 					},
 					{
 						label: '结构类型：',
-						value: '死而复生如火如荼后台和肉'
+						value: ''
 					},
 					{
 						label: '耐火等级：',
@@ -143,42 +143,8 @@ export default {
 			}, {
 				name: '建筑保温'
 			}],
-			checkboxlist: [{
-					name: '火灾自动报警系统',
-					checked: false,
-				},
-				{
-					name: '自动喷水灭火系统',
-					checked: true,
-				},
-				{
-					name: '消火栓系统',
-					checked: false,
-				},
-				{
-					name: '防烟排烟及通风，空调系统',
-					checked: false,
-				},
-				{
-					name: '消防电气',
-					checked: false,
-				},
-				{
-					name: '建筑灭火器',
-					checked: false,
-				},
-				{
-					name: '泡沫灭火系统',
-					checked: false,
-				},
-				{
-					name: '气体灭火系统',
-					checked: false,
-				},
-				{
-					name: '消防电梯',
-					checked: false,
-				},
+			checkboxlist: [
+					
 			],
 			current: 0,
 			projectList: [],
@@ -204,10 +170,29 @@ export default {
 		uni.setNavigationBarTitle({
 			title: '工程项目,'
 		});
-		this.getProjects()
 		this.getOptions()
+		this.getProjects()
 	},
 	methods: {
+		//打开折叠面板
+		OnBuild(activeNames){
+			console.log(activeNames)
+			switch(activeNames){
+				case 0 :
+				this.getProjectInformation(this.splitStr(this.projectList[0].value)[0])
+				break;
+				case 1:
+				this.getAccept(this.splitStr(this.projectList[0].value)[1])
+				// _this.changetab(1)
+				_this.changetab(0)
+				break;
+				default:
+				console.log(this.splitStr(this.projectList[0].value)[0])
+				console.log(this.splitStr(this.projectList[0].value)[1])
+				this.getFacilities(this.splitStr(this.projectList[0].value)[0],this.splitStr(this.projectList[0].value)[2])
+			}
+			
+		},
 		//打开项目列表
 		onProjectList() {
 			this.show = true
@@ -230,9 +215,14 @@ export default {
 								label: item.projectName,
 								value: item.projectId + '*' + item.acContentId + '*' + item.standardId
 								// extra:item.acContentId
-
+								// _this.getList(_this.splitStr(_this.projectList[0].value)[0])
 							}
 						})
+						// _this.getProjectInformation(_this.splitStr(_this.projectList[0].value)[0])
+						// _this.getAccept(_this.splitStr(_this.projectList[0].value)[1])
+						// console.log(_this.splitStr(_this.projectList[0].value)[1])
+						// _this.changetab(1)
+						// _this.changetab(0)
 
 					}
 				}
@@ -241,7 +231,7 @@ export default {
 		},
 		//选中项目
 		confirm(e) {
-			console.log(e);
+			// console.log(e);
 			let projectId = this.splitStr(e[0].valut)[0]
 			let contentId = this.splitStr(e[0].valut)[1]
 			let standardId = this.splitStr(e[0].valut)[2]
@@ -322,6 +312,7 @@ export default {
 			s = str.split('*')
 			return s
 		},
+		//获取验收内容6项
 		changetab(index) {
 			this.current = index
 			switch (index) {
@@ -341,7 +332,7 @@ export default {
 					console.log(5)
 					break;
 				default:
-
+// console.log(111)
 					this.basetabInfo = this.acceptContent.ac1Builds.map(item => {
 						let buildTypeId = '';
 						this.buildTypeList.forEach(i => {
@@ -399,9 +390,11 @@ export default {
 
 
 					})
+					console.log(this.basetabInfo)
 
 			}
 		},
+
 		async getAccept(contentId) {
 			let param = {
 				contentId: contentId

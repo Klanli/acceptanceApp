@@ -1,17 +1,25 @@
 <template>
 	<view class="buildInfo_content">
-		<view class="list" v-for="item in list" :key="item.id">
-			<view class="tit">
-				{{item.tit}}
-			</view>
-			<view class="floorName" v-for="i in item.floorNameList" :key="i.id">
-				<u-checkbox 
+		<view class="btn">
+			<u-button size="mini" type="primary" @click="getInfo()">确认</u-button>
+		</view>
+		
+		<view class="list" >
+			<u-checkbox-group @change="checkboxGroupChange" :wrap='wrap'>
+						<u-checkbox 
+							@change="checkboxChange" 
+							v-model="item.check" 
+							v-for="(item,index) in list" :key="index"
+							:name="item.name"
+						>{{item.name}}</u-checkbox>
+					</u-checkbox-group>
+				<!-- <u-checkbox 
 				@change="checkboxChange" 
 				v-model="item.checked" 
 				:name="item.name"
-			>{{i.name}}</u-checkbox>
+			>{{item.name}}</u-checkbox> -->
 				
-			</view>
+			<!-- </view> -->
 		</view>
 	</view>
 </template>

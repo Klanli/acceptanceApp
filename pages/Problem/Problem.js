@@ -1,7 +1,33 @@
 export default {
 	data() {
 		return {
-			text:'打算开店嘎事了哈待会大赛啊好多啊擦的哈稍等哈<h1>大好大的好哒好哒<h1>'
+			textList:[]             
 		}
-	}
+	},
+	onLoad(){
+		let _this = this
+			uni.getStorage({
+				key: 'checkContent',
+				success: async function(res) {
+					console.log(res.data);
+					// _this.requiremess = res.data.technologyRequires
+					let param = {
+						checklistId:res.data.id
+					}
+					let res1 = await _this.$api.POST_getQuestionByCheckListId(param)
+					if(res1.httpStatus ==200){
+						let arrKey = Object.keys(res1.result)
+						let arrValue =Object.values(res1.result)
+						for (let i in arrKey){
+							let obj = {}
+							obj.tit = arrKey[i]
+							obj.con = arrValue[i]
+							_this.textList.push(obj)
+						}
+						
+					}
+				}
+			})
+		
+	},
 }
