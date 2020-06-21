@@ -9,7 +9,7 @@
 			</view>
 		</view>
 		<!-- <u-input v-model="content" :type="type" :border="border" :auto-height="autoHeight" /> -->
-		<textarea class="textarea" auto-height v-model='content' disabled placeholder="请输入"/>
+		<textarea class="textarea" auto-height v-model='content' disabled/>
 		<view v-show="isNoDataReview" style="background-color: #ececec;border-top:1px solid #ccc;border-bottom:1px solid #ccc;">
 			<text>检查部位:</text>
 			<view>

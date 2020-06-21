@@ -5,16 +5,16 @@ import {
 
 let sid;
 uni.getStorage({
-    key: 'sid',
-    success: function (res) {
+	key: 'sid',
+	success: function(res) {
 		console.log(res.data)
-		if(res.data){
+		if (res.data) {
 			sid = res.data
 		}
-		
-    }
+
+	}
 })
- const api = (() => {
+const api = (() => {
 	let apiobj = {}
 	Object.keys(apilist.get).forEach(curr => {
 		apiobj[curr] = data => {
@@ -44,36 +44,36 @@ uni.getStorage({
 				title: '加载中'
 			});
 			let header;
-			if(sid){
-				if(cur=='POST_submitRecode'){
-					header={
+			if (sid) {
+				if (cur == 'POST_submitRecode') {
+					header = {
 						// 'content-type': 'application/json',
 						'Accept': 'application/json, */*',
 						// 'Access-Token': Token
 						'Content-type': 'application/json', //设置请求参数格式
-						'sid':sid
+						'sid': sid
 					}
-				}else{
-					header={
-					// 'content-type': 'application/json',
-					'Accept': 'application/json, */*',
-					// 'Access-Token': Token
-					'Content-type': 'application/x-www-form-urlencoded', //设置请求参数格式
-					'sid':sid
+				} else {
+					header = {
+						// 'content-type': 'application/json',
+						'Accept': 'application/json, */*',
+						// 'Access-Token': Token
+						'Content-type': 'application/x-www-form-urlencoded', //设置请求参数格式
+						'sid': sid
+					}
 				}
-				}
-				
-			}else{
-				header={
+
+			} else {
+				header = {
 					// 'content-type': 'application/json',
 					'Accept': 'application/json, */*',
 					// 'Access-Token': Token
 					'Content-type': 'application/x-www-form-urlencoded', //设置请求参数格式
 				}
 			}
-			
+
 			return uni.request({
-				header:header,
+				header: header,
 				url: BASEURL + apilist.post[cur],
 				method: 'POST',
 				data: { ...data

@@ -15,23 +15,26 @@ export default {
 	onLoad(option) {
 		// let checkList = JSON.parse(option.checkList)
 		let _this = this
-		console.log(option.checkList)
+		// console.log(option.checkList)
 		if (option.checkList) {
 			this.checkList += option.checkList
 			// console.log(this.checkList)
 		}
+		
+
+	},
+	onShow() {
 		// 取projectId
+		let _this = this
 		uni.getStorage({
 			key: 'projectInfo',
 			success: function(res) {
-				// console.log(res.data);
+				console.log(res.data);
 				_this.projectId = _this.splitStr(res.data[0].valut)[0]
 				_this.getContent()
 			}
 		})
-
 	},
-	onShow() {},
 
 	methods: {
 		//页面内容回填
@@ -154,6 +157,7 @@ export default {
 
 				}
 			}
+			param = JSON.stringify(param)
 			let res = await this.$api.POST_submitRecode(param)
 			if (res.httpStatus == 200) {
 				this.$refs.uToast.show({
@@ -196,6 +200,8 @@ export default {
 		},
 		// 数据回填
 		async getData() {
+			console.log(this.checklistId)
+			console.log(this.projectId)
 			let param = {
 				checklistId: this.checklistId,
 				projectId: this.projectId,

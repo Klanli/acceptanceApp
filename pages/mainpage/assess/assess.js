@@ -23,14 +23,16 @@ export default {
 					return {
 						finishTasksNum: item.finishTasksNum,
 						totalTasksNum: item.totalTasksNum,
-						title: item.titleName,
+						num:`${item.finishTasksNum}/${item.totalTasksNum}`,
+						title: `${item.finishTasksNum}/${item.totalTasksNum}`+'---'+ item.titleName,
 						animation: true,
 						id:item.standardPrimaryTitleId,
 						children: item.secondaryTitles.map(i => {
 							return {
 								finishTasksNum: i.finishTasksNum,
 								totalTasksNum: i.totalTasksNum,
-								title: i.titleName,
+								num:`${item.finishTasksNum}/${item.totalTasksNum}`,
+								title:`${item.finishTasksNum}/${item.totalTasksNum}`+'---'+ i.titleName ,
 								animation: true,
 								id:i.standardSecondaryTitleId,
 								children: i.checklistList.map(j => {
@@ -53,14 +55,16 @@ export default {
 					return {
 						finishTasksNum: item.finishTasksNum,
 						totalTasksNum: item.totalTasksNum,
-						title: item.titleName,
+						num:`${item.finishTasksNum}/${item.totalTasksNum}`,
+						title: `${item.finishTasksNum}/${item.totalTasksNum}`+'---'+ item.titleName,
 						animation: true,
 						id:item.standardPrimaryTitleId,
 						children: item.secondaryTitles.map(i => {
 							return {
 								finishTasksNum: i.finishTasksNum,
 								totalTasksNum: i.totalTasksNum,
-								title: i.titleName,
+								num:`${item.finishTasksNum}/${item.totalTasksNum}`,
+								title: `${item.finishTasksNum}/${item.totalTasksNum}`+'---'+ i.titleName ,
 								animation: true,
 								id:i.standardSecondaryTitleId,
 								children: i.checklistList.map(j => {
@@ -85,7 +89,7 @@ export default {
 			}
 		},
 		assess(val) {
-			console.log(val)
+			// console.log(val)
 			// let param = JSON.stringify(val)
 			uni.setStorage({
 				key: 'checkContent',
@@ -119,6 +123,14 @@ export default {
 								value: item.projectId + '*' + item.acContentId + '*' + item.standardId
 
 							}
+						})
+			let eData = [{label:_this.projectList[0].label,
+			valut:_this.projectList[0].value
+			}]			
+			console.log(eData)
+						uni.setStorage({
+							key: 'projectInfo',
+							data: eData
 						})
 							// console.log(_this.splitStr(_this.projectList[0].value)[0])
 						_this.getList(_this.splitStr(_this.projectList[0].value)[0])

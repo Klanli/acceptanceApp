@@ -366,7 +366,7 @@ export default {
 			let res1 = await this.$api.POST_getAcceptContent(param)
 			if (res1.httpStatus == 200) {
 				this.acceptContent = res1.result
-				// console.log(this.acceptContent)
+				console.log(res1)
 				// 默认第一项
 				this.basetabInfo = res1.result.ac1Builds.map(item => {
 					let buildTypeId = '';

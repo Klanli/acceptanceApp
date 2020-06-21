@@ -6,14 +6,20 @@
 		</view>
 		<uni-collapse :accordion="true">
  			<uni-collapse-item class="firstmenu" v-for="(item,index) in accordion" :key="index" :title="item.title" :show-animation="item.animation">
- 				<uni-collapse :accordion="true">
+				<view class="">
+					<uni-collapse :accordion="true">
  					<uni-collapse-item class="secmenu" v-for="(i,index) in item.children" :key="index" :title="i.title" :show-animation="item.animation">
-						<u-cell-group >
+						<view class="">
+							<u-cell-group >
 							<u-cell-item style="background-color: #F5F5F9;" class="thrdmenu" :title="j.title" @click='assess(j)' v-for="(j,index) in i.children" :key='index'></u-cell-item>
 							<!-- <u-cell-item title="会员等级" value="新版本" @click='assess'></u-cell-item> -->
 						</u-cell-group>
+						</view>
+						
  					</uni-collapse-item>
  				</uni-collapse>
+				</view>
+ 				
  			</uni-collapse-item>
  		</uni-collapse>
 	</view>
