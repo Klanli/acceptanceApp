@@ -27,7 +27,7 @@
 				<u-button type="primary" size="mini" @click="toProblem()">问题</u-button>
 			</view>
 		</view>
-		<textarea class="textarea" style="min-height: 22vh;" auto-height v-model='acceptRecode'placeholder="请输入"/>
+		<textarea class="textarea" style="min-height: 22vh;" auto-height v-model='acceptRecode' placeholder="请输入"/>
 		<view>
 			<u-button type="primary" size="mini" @click=
 			"uploadFiles()">文件上传</u-button>

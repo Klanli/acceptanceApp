@@ -18,7 +18,7 @@ export default {
 		POST_getQuestionByCheckListId:'app/record/getQuestionByCheckListId', //根据checklistId查询一批常见问题
 		POST_submitRecode:'app/record/replace' ,//统一提交（现场评定 + 资料审查)
 		POST_addUpload:'app/record/upload/add' ,//添加上传验收文件地址信息
-		POST_getRecordByChecklistId:'app/record/upload/getRecordByChecklistId' ,//获取填写的现场评定记录 - 包含附件
+		POST_getRecordByChecklistId:'app/record/getRecordByCheckListId' ,//获取填写的现场评定记录 - 包含附件
 		POST_updatePwd:'user/updateUser',//修改密码
 	}
 }

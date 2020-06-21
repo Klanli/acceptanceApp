@@ -35,6 +35,12 @@ export default {
 						});
 					}
 				})
+			}else{
+				this.$refs.uToast.show({
+					title: '账号或密码错误',
+					type: 'error',
+					duration: 2000
+				})
 			}
 
 		},

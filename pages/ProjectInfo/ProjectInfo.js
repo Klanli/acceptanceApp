@@ -2,12 +2,14 @@ export default {
 	data() {
 		return {
 			itemStyle: {
-				backgroundColor: '#b3b3b3',
+				// backgroundColor: '#b3b3b3',
 				color: '#fff',
-				borderBottom: '1px solid #eee',
+				borderBottom: '1px solid #ccc',
 			},
 			headsty: {
-				color: '#fff'
+				// color: '#fff'
+				textIndent: '10upx'
+				
 			},
 			baseInfo: [{
 					label: '工程名称：',
@@ -95,47 +97,6 @@ export default {
 						label: '地下建筑面积：',
 						value: ''
 					}
-				],
-				[{
-						label: '建筑名称：',
-						value: ''
-					},
-					{
-						label: '结构类型：',
-						value: ''
-					},
-					{
-						label: '耐火等级：',
-						value: ''
-					},
-					{
-						label: '地上层数：',
-						value: ''
-					},
-					{
-						label: '地下层数：',
-						value: ''
-					},
-					{
-						label: '建筑高度：',
-						value: ''
-					},
-					{
-						label: '建筑长度：',
-						value: ''
-					},
-					{
-						label: '占地面积：',
-						value: ''
-					},
-					{
-						label: '地上建筑面积：',
-						value: ''
-					},
-					{
-						label: '地下建筑面积：',
-						value: ''
-					}
 				]
 			],
 			list: [{
@@ -147,9 +108,7 @@ export default {
 			}, {
 				name: '建筑保温'
 			}],
-			checkboxlist: [
-					
-			],
+			checkboxlist: [ ],
 			current: 0,
 			projectList: [],
 			show: false,
@@ -172,7 +131,7 @@ export default {
 	// },
 	onLoad() {
 		uni.setNavigationBarTitle({
-			title: '工程项目,'
+			title: '工程项目'
 		});
 		this.getOptions()
 		this.getProjects()
@@ -182,18 +141,19 @@ export default {
 		OnBuild(activeNames){
 			console.log(activeNames)
 			switch(activeNames){
-				case 0 :
+				case '0' :
+				console.log(this.splitStr(this.projectList[0].value)[0])
 				this.getProjectInformation(this.splitStr(this.projectList[0].value)[0])
 				break;
-				case 1:
+				case '1':
 				this.getAccept(this.splitStr(this.projectList[0].value)[1])
-				// _this.changetab(1)
-				_this.changetab(0)
+				// this.changetab(0)
 				break;
 				default:
-				console.log(this.splitStr(this.projectList[0].value)[0])
-				console.log(this.splitStr(this.projectList[0].value)[1])
+				// console.log(this.splitStr(this.projectList[0].value)[0])
+				// console.log(this.splitStr(this.projectList[0].value)[1])
 				this.getFacilities(this.splitStr(this.projectList[0].value)[0],this.splitStr(this.projectList[0].value)[2])
+				break;
 			}
 			
 		},
@@ -218,15 +178,9 @@ export default {
 							return {
 								label: item.projectName,
 								value: item.projectId + '*' + item.acContentId + '*' + item.standardId
-								// extra:item.acContentId
-								// _this.getList(_this.splitStr(_this.projectList[0].value)[0])
 							}
 						})
-						// _this.getProjectInformation(_this.splitStr(_this.projectList[0].value)[0])
-						// _this.getAccept(_this.splitStr(_this.projectList[0].value)[1])
-						// console.log(_this.splitStr(_this.projectList[0].value)[1])
-						// _this.changetab(1)
-						// _this.changetab(0)
+						
 
 					}
 				}
@@ -235,7 +189,7 @@ export default {
 		},
 		//选中项目
 		confirm(e) {
-			// console.log(e);
+			console.log(e)
 			let projectId = this.splitStr(e[0].valut)[0]
 			let contentId = this.splitStr(e[0].valut)[1]
 			let standardId = this.splitStr(e[0].valut)[2]
@@ -322,18 +276,23 @@ export default {
 			switch (index) {
 				case 1:
 					console.log(1)
+					this.basetabInfo = []
 					break;
 				case 2:
 					console.log(2)
+					this.basetabInfo = []
 					break;
 				case 3:
 					console.log(3)
+					this.basetabInfo = []
 					break;
 				case 4:
 					console.log(4)
+					this.basetabInfo = []
 					break;
 				case 5:
 					console.log(5)
+					this.basetabInfo = []
 					break;
 				default:
 // console.log(111)
@@ -394,7 +353,7 @@ export default {
 
 
 					})
-					console.log(this.basetabInfo)
+					break;
 
 			}
 		},
@@ -403,11 +362,69 @@ export default {
 			let param = {
 				contentId: contentId
 			}
-			//获取项目
+			//验收内容
 			let res1 = await this.$api.POST_getAcceptContent(param)
 			if (res1.httpStatus == 200) {
 				this.acceptContent = res1.result
-				console.log(this.acceptContent)
+				// console.log(this.acceptContent)
+				// 默认第一项
+				this.basetabInfo = res1.result.ac1Builds.map(item => {
+					let buildTypeId = '';
+					this.buildTypeList.forEach(i => {
+						if (i.dictionaryId == item.buildTypeId) {
+							buildTypeId = i.name
+						}
+					})
+					let refractoryLevelId = '';
+					this.refractoryLevelList.forEach(i => {
+						if (i.dictionaryId == item.refractoryLevelId) {
+							refractoryLevelId = i.name
+						}
+					})
+					return [{
+							label: '建筑名称：',
+							value: item.buildName
+						},
+						{
+							label: '结构类型：',
+							value: buildTypeId
+						},
+						{
+							label: '耐火等级：',
+							value: item.refractoryLevelId
+						},
+						{
+							label: '地上层数：',
+							value: item.inTheUpperNumber + '层'
+						},
+						{
+							label: '地下层数：',
+							value: item.numberOfUnderground + '层'
+						},
+						{
+							label: '建筑高度：',
+							value: item.buildHeight + 'm'
+						},
+						{
+							label: '建筑长度：',
+							value: item.buildLen + 'm'
+						},
+						{
+							label: '占地面积：',
+							value: item.coversArea + 'm²'
+						},
+						{
+							label: '地上建筑面积：',
+							value: item.aboveGroundFloorArea + 'm²'
+						},
+						{
+							label: '地下建筑面积：',
+							value: item.undergroundFloorSpace + 'm²'
+						}
+					]
+				
+				
+				})
 			}
 
 		},
@@ -433,7 +450,7 @@ export default {
 			let res1 = await this.$api.POST_getMenus(param)
 			if (res1.httpStatus == 200) {
 				// this.buildTypeList = res1.result
-				console.log(res1)
+				// console.log(res1)
 				this.checkboxlist = res1.result.primaryTitles.map(item => {
 					return {
 						name: item.titleName,

@@ -27,12 +27,12 @@
 			</u-collapse-item>
 			<u-collapse-item class="collitem" title="建筑消防设施" index='3'>
 				<view class="collapse-item">
-					<u-checkbox-group :wrap='true' disabled>
+					<u-checkbox-group :wrap='true' active-color="0E8AFE">
 						<u-checkbox 
 							style="margin: 4px 0;"
 							v-model="item.checked" 
 							v-for="(item, index) in checkboxlist" :key="index" 
-							:name="item.name"
+							:name="item.name" 
 						>{{item.name}}</u-checkbox>
 					</u-checkbox-group>
 				</view>
@@ -57,15 +57,17 @@
 		right: 8px;
 		bottom: 58px;
 		z-index: 99999;
+		
 	}
 	}
 	.collitem{
-		background-color: #2979FF!important;
+		/* background-color: #2979FF!important; */
 		color: #fff!important;
 		.u-collapse-head{
 			color: #fff!important;
 		}
 	}
+	
 .collapse-item{
 	background-color: #fff;
 	min-height: 400px;

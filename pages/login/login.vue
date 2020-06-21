@@ -1,5 +1,6 @@
 <template>
 	<view class="login_content">
+		<u-toast ref="uToast" />
 		<u-avatar src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=4146511713,1144796055&fm=11&gp=0.jpg" size="220"></u-avatar>
 		<p>建设工程消防验收</p>
 		<u-tabs style="width: 260px;" bg-color='#F5F5F9' bar-width='220' :list="list" :is-scroll="false" :current="current" @change="change"></u-tabs>

@@ -40,12 +40,15 @@ export default {
 			uni.getStorage({
 				key: 'checkContent',
 				success: function(res) {
+					console.log(res)
 					_this.content = res.data.title,
 						_this.checklistId = res.data.id
 					if (res.data.standardId == 'standard_001') {
-						this.isNoDataReview = true
+						console.log(1)
+						_this.isNoDataReview = true
 					} else {
-						this.isNoDataReview = false
+						console.log(2)
+						_this.isNoDataReview = false
 					}
 					_this.getData()
 				}
@@ -82,7 +85,7 @@ export default {
 				success: (chooseImageRes) => {
 					const tempFilePaths = chooseImageRes.tempFilePaths;
 					uni.uploadFile({
-						url: 'http://192.168.0.200:2225/upload', //仅为示例，非真实的接口地址
+						url: 'http://39.104.90.111:2225/upload', //仅为示例，非真实的接口地址
 						filePath: tempFilePaths[0],
 						name: 'file',
 						formData: {
@@ -200,7 +203,15 @@ export default {
 			let res = await this.$api.POST_getRecordByChecklistId(param)
 			console.log(res)
 			if (res.httpStatus == 200) {
-
+            if(this.isNoDataReview){
+				this.checkList = res.result.result.checkPart
+				this.checkNum = res.result.result.checkNum
+				this.acceptRecode = res.result.result.contentRecord
+				this.value = res.result.result.result
+			}else{
+				this.acceptRecode = res.result.result.contentRecord
+				this.value = res.result.result.result
+			}
 			}
 		}
 	}
