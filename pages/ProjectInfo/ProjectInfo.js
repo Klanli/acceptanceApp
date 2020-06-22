@@ -8,8 +8,8 @@ export default {
 			},
 			headsty: {
 				// color: '#fff'
-				textIndent: '10upx'
-				
+				// textIndent: '10upx'
+
 			},
 			baseInfo: [{
 					label: '工程名称：',
@@ -107,8 +107,12 @@ export default {
 				name: '堆场'
 			}, {
 				name: '建筑保温'
+			}, {
+				name: '装饰装修'
+			}, {
+				name: '用途改变'
 			}],
-			checkboxlist: [ ],
+			checkboxlist: [],
 			current: 0,
 			projectList: [],
 			show: false,
@@ -122,13 +126,9 @@ export default {
 			},
 			buildTypeList: [], //结构类型
 			refractoryLevelList: [], //耐火等级
+			project:{}, //当前选中的项目
 		};
 	},
-	// onLoad(option) {
-	// 	uni.setNavigationBarTitle({
-	// 		title:'工程项目,'
-	// 	});
-	// },
 	onLoad() {
 		uni.setNavigationBarTitle({
 			title: '工程项目'
@@ -138,24 +138,27 @@ export default {
 	},
 	methods: {
 		//打开折叠面板
-		OnBuild(activeNames){
-			console.log(activeNames)
-			switch(activeNames){
-				case '0' :
-				console.log(this.splitStr(this.projectList[0].value)[0])
-				this.getProjectInformation(this.splitStr(this.projectList[0].value)[0])
-				break;
+		OnBuild(activeNames) {
+			// console.log(activeNames)
+			// console.log(this)
+			// console.log(this.projectList)
+			// console.log(this.project)
+			switch (activeNames) {
+				case '0':
+					console.log(this.splitStr(this.project.value)[0])
+					this.getProjectInformation(this.splitStr(this.project.value)[0])
+					break;
 				case '1':
-				this.getAccept(this.splitStr(this.projectList[0].value)[1])
-				// this.changetab(0)
-				break;
+					this.getAccept(this.splitStr(this.project.value)[1])
+					// this.changetab(0)
+					break;
 				default:
-				// console.log(this.splitStr(this.projectList[0].value)[0])
-				// console.log(this.splitStr(this.projectList[0].value)[1])
-				this.getFacilities(this.splitStr(this.projectList[0].value)[0],this.splitStr(this.projectList[0].value)[2])
-				break;
+					// console.log(this.splitStr(this.projectList[0].value)[0])
+					// console.log(this.splitStr(this.projectList[0].value)[1])
+					this.getFacilities(this.splitStr(this.project.value)[0], this.splitStr(this.project.value)[2])
+					break;
 			}
-			
+
 		},
 		//打开项目列表
 		onProjectList() {
@@ -173,14 +176,16 @@ export default {
 					//获取项目
 					let res1 = await _this.$api.POST_getProjectsByUser(param)
 					if (res1.httpStatus == 200) {
+						// console.log(res1)
 						_this.projectList = res1.result.map(item => {
-							console.log(res1)
 							return {
 								label: item.projectName,
 								value: item.projectId + '*' + item.acContentId + '*' + item.standardId
 							}
 						})
-						
+						_this.project = _this.projectList[0]
+						// console.log(_this.project)
+
 
 					}
 				}
@@ -189,14 +194,24 @@ export default {
 		},
 		//选中项目
 		confirm(e) {
-			console.log(e)
-			let projectId = this.splitStr(e[0].valut)[0]
-			let contentId = this.splitStr(e[0].valut)[1]
-			let standardId = this.splitStr(e[0].valut)[2]
-			this.getProjectInformation(projectId)
-			this.getAccept(contentId)
-			this.getFacilities(projectId, standardId)
-
+			console.log(this.project)
+			console.log(e[0])
+			this.project = e[0]
+			if(e[0].value){
+				this.project = e[0]
+			}else{
+				this.project = {
+					label:e[0].label,
+					value:e[0].valut,
+				}
+			}
+// 			let projectId = this.splitStr(e[0].valut)[0]
+// 			let contentId = this.splitStr(e[0].valut)[1]
+// 			let standardId = this.splitStr(e[0].valut)[2]
+// 			this.getProjectInformation(projectId)
+// 			this.getAccept(contentId)
+// 			this.getFacilities(projectId, standardId)
+// // valut
 		},
 		//获取项目基本信息
 		async getProjectInformation(a) {
@@ -295,7 +310,7 @@ export default {
 					this.basetabInfo = []
 					break;
 				default:
-// console.log(111)
+					console.log(111)
 					this.basetabInfo = this.acceptContent.ac1Builds.map(item => {
 						let buildTypeId = '';
 						this.buildTypeList.forEach(i => {
@@ -309,51 +324,63 @@ export default {
 								refractoryLevelId = i.name
 							}
 						})
-						return [{
-								label: '建筑名称：',
-								value: item.buildName
-							},
-							{
-								label: '结构类型：',
-								value: buildTypeId
-							},
-							{
-								label: '耐火等级：',
-								value: item.refractoryLevelId
-							},
-							{
-								label: '地上层数：',
-								value: item.inTheUpperNumber + '层'
-							},
-							{
-								label: '地下层数：',
-								value: item.numberOfUnderground + '层'
-							},
-							{
-								label: '建筑高度：',
-								value: item.buildHeight + 'm'
-							},
-							{
-								label: '建筑长度：',
-								value: item.buildLen + 'm'
-							},
-							{
-								label: '占地面积：',
-								value: item.coversArea + 'm²'
-							},
-							{
-								label: '地上建筑面积：',
-								value: item.aboveGroundFloorArea + 'm²'
-							},
-							{
-								label: '地下建筑面积：',
-								value: item.undergroundFloorSpace + 'm²'
-							}
-						]
+						return {
+							buildName: item.buildName,
+							buildTypeId: buildTypeId,
+							refractoryLevelId: refractoryLevelId,
+							inTheUpperNumber: item.inTheUpperNumber + '层',
+							numberOfUnderground: item.numberOfUnderground+ '层',
+							buildHeight: item.buildHeight + 'm',
+							buildLen: item.buildLen + 'm',
+							coversArea: item.coversArea + 'm²',
+							aboveGroundFloorArea: item.aboveGroundFloorArea + 'm²',
+							undergroundFloorSpace: item.undergroundFloorSpace + 'm²',
+						}
+						// return [{
+						// 		label: '建筑名称：',
+						// 		value: item.buildName
+						// 	},
+						// 	{
+						// 		label: '结构类型：',
+						// 		value: buildTypeId
+						// 	},
+						// 	{
+						// 		label: '耐火等级：',
+						// 		value: item.refractoryLevelId
+						// 	},
+						// 	{
+						// 		label: '地上层数：',
+						// 		value: item.inTheUpperNumber + '层'
+						// 	},
+						// 	{
+						// 		label: '地下层数：',
+						// 		value: item.numberOfUnderground + '层'
+						// 	},
+						// 	{
+						// 		label: '建筑高度：',
+						// 		value: item.buildHeight + 'm'
+						// 	},
+						// 	{
+						// 		label: '建筑长度：',
+						// 		value: item.buildLen + 'm'
+						// 	},
+						// 	{
+						// 		label: '占地面积：',
+						// 		value: item.coversArea + 'm²'
+						// 	},
+						// 	{
+						// 		label: '地上建筑面积：',
+						// 		value: item.aboveGroundFloorArea + 'm²'
+						// 	},
+						// 	{
+						// 		label: '地下建筑面积：',
+						// 		value: item.undergroundFloorSpace + 'm²'
+						// 	}
+						// ]
 
 
 					})
-					break;
+					// break;
 
 			}
 		},
@@ -366,7 +393,7 @@ export default {
 			let res1 = await this.$api.POST_getAcceptContent(param)
 			if (res1.httpStatus == 200) {
 				this.acceptContent = res1.result
-				console.log(res1)
+				// console.log(res1)
 				// 默认第一项
 				this.basetabInfo = res1.result.ac1Builds.map(item => {
 					let buildTypeId = '';
@@ -377,67 +404,42 @@ export default {
 					})
 					let refractoryLevelId = '';
 					this.refractoryLevelList.forEach(i => {
+						console.log(i)
+						console.log(item.refractoryLevelId)
 						if (i.dictionaryId == item.refractoryLevelId) {
+							console.log(i.name)
 							refractoryLevelId = i.name
 						}
 					})
-					return [{
-							label: '建筑名称：',
-							value: item.buildName
-						},
-						{
-							label: '结构类型：',
-							value: buildTypeId
-						},
-						{
-							label: '耐火等级：',
-							value: item.refractoryLevelId
-						},
-						{
-							label: '地上层数：',
-							value: item.inTheUpperNumber + '层'
-						},
-						{
-							label: '地下层数：',
-							value: item.numberOfUnderground + '层'
-						},
-						{
-							label: '建筑高度：',
-							value: item.buildHeight + 'm'
-						},
-						{
-							label: '建筑长度：',
-							value: item.buildLen + 'm'
-						},
-						{
-							label: '占地面积：',
-							value: item.coversArea + 'm²'
-						},
-						{
-							label: '地上建筑面积：',
-							value: item.aboveGroundFloorArea + 'm²'
-						},
-						{
-							label: '地下建筑面积：',
-							value: item.undergroundFloorSpace + 'm²'
-						}
-					]
-				
-				
+					console.log(refractoryLevelId)
+					return {
+						buildName: item.buildName,
+						buildTypeId: buildTypeId,
+						refractoryLevelId: refractoryLevelId,
+						inTheUpperNumber: item.inTheUpperNumber + '层',
+						numberOfUnderground: item.numberOfUnderground+ '层',
+						buildHeight: item.buildHeight + 'm',
+						buildLen: item.buildLen + 'm',
+						coversArea: item.coversArea + 'm²',
+						aboveGroundFloorArea: item.aboveGroundFloorArea + 'm²',
+						undergroundFloorSpace: item.undergroundFloorSpace + 'm²',
+					}
+
+
 				})
+				// this.basetabInfo = this.basetabInfo.concat(this.basetabInfo)
 			}
 
 		},
 		//获取下拉框数据
 		async getOptions() {
-			//获取项目
 			let res1 = await this.$api.POST_buildType()
 			if (res1.httpStatus == 200) {
 				this.buildTypeList = res1.result
 			}
 			let res2 = await this.$api.POST_refractoryLevelId()
 			if (res2.httpStatus == 200) {
-				this.refractoryLevelList = res1.result
+				this.refractoryLevelList = res2.result
 			}
 		},
 		//获取消防设施
@@ -449,9 +451,13 @@ export default {
 			}
 			let res1 = await this.$api.POST_getMenus(param)
 			if (res1.httpStatus == 200) {
-				// this.buildTypeList = res1.result
-				// console.log(res1)
-				this.checkboxlist = res1.result.primaryTitles.map(item => {
+				this.checkboxlist = []
+				res1.result.primaryTitles.forEach(item => {
+					if (item.selected) {
+						this.checkboxlist.push(item)
+					}
+				})
+				this.checkboxlist = this.checkboxlist.map(item => {
 					return {
 						name: item.titleName,
 						checked: item.selected,

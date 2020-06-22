@@ -54,13 +54,13 @@ const api = (() => {
 						'sid': sid
 					}
 				} else {
-					header = {
-						// 'content-type': 'application/json',
-						'Accept': 'application/json, */*',
-						// 'Access-Token': Token
-						'Content-type': 'application/x-www-form-urlencoded', //设置请求参数格式
-						'sid': sid
-					}
+				header = {
+					// 'content-type': 'application/json',
+					'Accept': 'application/json, */*',
+					// 'Access-Token': Token
+					'Content-type': 'application/x-www-form-urlencoded', //设置请求参数格式
+					'sid': sid
+				}
 				}
 
 			} else {

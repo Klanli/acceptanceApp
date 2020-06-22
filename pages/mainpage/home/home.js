@@ -54,25 +54,25 @@ export default {
 				}
 				this.optionData = [{
 						label: '待验收',
-						value: totalTasks - finishTasks
+						value: ''
 					},
 					{
-						label: '主控项',
+						label: '主控项：',
 						value: primaryFinishABTasks
 					},
 					{
-						label: '一般项',
+						label: '一般项：',
 						value: secondaryFinishCTasks
 					}, {
 						label: '已验收',
-						value: finishTasks
+						value: ''
 					},
 					{
-						label: '主控项',
+						label: '主控项：',
 						value: primaryNonFinishABTasks
 					},
 					{
-						label: '一般项',
+						label: '一般项：',
 						value: secondaryNonFinishCTasks
 					}
 					// {lable:'待验收',value:totalTasks-finishTasks},
@@ -95,7 +95,7 @@ export default {
 				//获取项目
 				let res1 = await this.$api.POST_getProjectsByUser(param)
 				if (res1.httpStatus == 200) {
-					// console.log(res1)
+					console.log(res1)
 					this.list = res1.result.map(item=>{
 						return{
 							label:item.projectName,

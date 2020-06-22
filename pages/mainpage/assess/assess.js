@@ -3,7 +3,8 @@ export default {
 		return {
 			accordion: [],
 			projectList: [],
-			show: false
+			show: false,
+			projectId: '', //当前选中的projectId
 		}
 	},
 	onLoad() {
@@ -19,31 +20,34 @@ export default {
 			let res = await this.$api.POST_getDocumentByProjectId(param)
 			if (res.httpStatus == 200) {
 				let list1 = res.result.tasksWithEvaluation.primaryTitles.map(item => {
-					console.log(item)
+					// console.log(item)
 					return {
 						finishTasksNum: item.finishTasksNum,
 						totalTasksNum: item.totalTasksNum,
-						num:`${item.finishTasksNum}/${item.totalTasksNum}`,
-						title: `${item.finishTasksNum}/${item.totalTasksNum}`+'---'+ item.titleName,
+						num: `${item.finishTasksNum}/${item.totalTasksNum}`,
+						title: `${item.finishTasksNum}/${item.totalTasksNum}` + '---' + item.titleName,
 						animation: true,
-						id:item.standardPrimaryTitleId,
+						id: item.standardPrimaryTitleId,
 						children: item.secondaryTitles.map(i => {
 							return {
 								finishTasksNum: i.finishTasksNum,
 								totalTasksNum: i.totalTasksNum,
-								num:`${item.finishTasksNum}/${item.totalTasksNum}`,
-								title:`${item.finishTasksNum}/${item.totalTasksNum}`+'---'+ i.titleName ,
+								num: `${item.finishTasksNum}/${item.totalTasksNum}`,
+								title: `${item.finishTasksNum}/${item.totalTasksNum}` + '---' + i.titleName,
 								animation: true,
-								id:i.standardSecondaryTitleId,
+								id: i.standardSecondaryTitleId,
 								children: i.checklistList.map(j => {
+									// console.log(j)
 									return {
 										standardId: j.standardId,
 										title: j.content,
-										id:j.standardChecklistId,
-										checkContent:j.checkContent,
-										standardId:j.standardId,
-										technologyRequires:j.technologyRequires,
-										rules:j.rules
+										id: j.standardChecklistId,
+										checkContent: j.checkContent,
+										standardId: j.standardId,
+										technologyRequires: j.technologyRequires,
+										rules: j.rules,
+										remark: j.remark
+
 									}
 
 								})
@@ -51,32 +55,33 @@ export default {
 						})
 					}
 				})
-			  let list2 = res.result.tasksWithLiteratureReview.primaryTitles.map(item => {
+				let list2 = res.result.tasksWithLiteratureReview.primaryTitles.map(item => {
 					return {
 						finishTasksNum: item.finishTasksNum,
 						totalTasksNum: item.totalTasksNum,
-						num:`${item.finishTasksNum}/${item.totalTasksNum}`,
-						title: `${item.finishTasksNum}/${item.totalTasksNum}`+'---'+ item.titleName,
+						num: `${item.finishTasksNum}/${item.totalTasksNum}`,
+						title: `${item.finishTasksNum}/${item.totalTasksNum}` + '---' + item.titleName,
 						animation: true,
-						id:item.standardPrimaryTitleId,
+						id: item.standardPrimaryTitleId,
 						children: item.secondaryTitles.map(i => {
 							return {
 								finishTasksNum: i.finishTasksNum,
 								totalTasksNum: i.totalTasksNum,
-								num:`${item.finishTasksNum}/${item.totalTasksNum}`,
-								title: `${item.finishTasksNum}/${item.totalTasksNum}`+'---'+ i.titleName ,
+								num: `${item.finishTasksNum}/${item.totalTasksNum}`,
+								title: `${item.finishTasksNum}/${item.totalTasksNum}` + '---' + i.titleName,
 								animation: true,
-								id:i.standardSecondaryTitleId,
+								id: i.standardSecondaryTitleId,
 								children: i.checklistList.map(j => {
 									return {
 										standardId: j.standardId,
 										title: j.content,
-										id:j.standardChecklistId,
-										checkContent:j.checkContent,
-										standardId:j.standardId,
-										technologyRequires:j.technologyRequires,
-										rules:j.rules
-										
+										id: j.standardChecklistId,
+										checkContent: j.checkContent,
+										standardId: j.standardId,
+										technologyRequires: j.technologyRequires,
+										rules: j.rules,
+										remark: j.remark
+
 									}
 
 								})
@@ -85,18 +90,18 @@ export default {
 					}
 				})
 				this.accordion = list1.concat(list2)
-				console.log(this.accordion)
+				// console.log(this.accordion)
 			}
 		},
 		assess(val) {
-			// console.log(val)
+			console.log(val)
 			// let param = JSON.stringify(val)
 			uni.setStorage({
 				key: 'checkContent',
 				data: val,
 				success: function() {
 					uni.navigateTo({
-					    url: '/pages/Record/Record'
+						url: '/pages/Record/Record'
 					});
 				}
 			})
@@ -124,17 +129,20 @@ export default {
 
 							}
 						})
-			let eData = [{label:_this.projectList[0].label,
-			valut:_this.projectList[0].value
-			}]			
-			console.log(eData)
+						// let eData = [{label:_this.projectList[0].label,
+						// valut:_this.projectList[0].value
+						// }]			
+						// console.log(eData)
+
+						// console.log(_this.splitStr(_this.projectList[0].value)[0])
+						// _this.getList(_this.splitStr(_this.projectList[0].value)[0])
+						// _this.peojectId = _this.splitStr(_this.projectList[0].value)[0]
+						_this.peojectId = _this.projectList[0].value
+						_this.getList(_this.splitStr(_this.peojectId)[0])
 						uni.setStorage({
 							key: 'projectInfo',
-							data: eData
+							data: _this.peojectId
 						})
-							// console.log(_this.splitStr(_this.projectList[0].value)[0])
-						_this.getList(_this.splitStr(_this.projectList[0].value)[0])
-
 					}
 				}
 			})
@@ -142,12 +150,19 @@ export default {
 		},
 		//选中项目
 		confirm(e) {
-			console.log(e);
-			let projectId = this.splitStr(e[0].valut)[0]
+			// console.log(e);
+			let projectId = ''
+			if (e[0].value) {
+				projectId = this.splitStr(e[0].value)[0]
+				this.projectId = e[0].value
+			} else {
+				projectId = this.splitStr(e[0].valut)[0]
+				this.projectId = e[0].valut
+			}
 			this.getList(projectId)
 			uni.setStorage({
 				key: 'projectInfo',
-				data: e
+				data: this.projectId
 			})
 
 		},

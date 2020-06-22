@@ -27,10 +27,12 @@
 				<u-button type="primary" size="mini" @click="toProblem()">问题</u-button>
 			</view>
 		</view>
-		<textarea class="textarea" style="min-height: 22vh;" auto-height v-model='acceptRecode' placeholder="请输入"/>
+		<!-- <textarea class="textarea" style="min-height: 22vh;" auto-height v-model='acceptRecode' placeholder="请输入11s"/> -->
+		<editor id="editor" class="ql-container" auto-height @ready="onEditorReady" @input="editorChange"></editor>
 		<view>
 			<u-button type="primary" size="mini" @click=
-			"uploadFiles()">文件上传</u-button>
+			"uploadImage('PNG')">上传图片</u-button><u-button type="primary" size="mini" @click=
+			"uploadVideo('MP4')">上传视频</u-button>
 			<!-- <u-button type="primary" size="mini" @click=
 			"uploadFiles('MP4')">视频上传</u-button>
 			<u-button type="primary" size="mini" @click=

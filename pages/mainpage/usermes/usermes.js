@@ -7,20 +7,27 @@ export default {
 			pwd: '',
 			border: true,
 			maskCloseAble: true,
-			showCancelButton: true
+			showCancelButton: true,
+			username:'',
+			phone:''
 		};
 	},
+	
 	onLoad() {
 		let _this = this
 		uni.getStorage({
 			key: 'userInfo',
 			success: function(res) {
+				console.log(res)
 				_this.userId = res.data.userId
+				_this.username = res.data.username
+				_this.phone = res.data.phone
 			}
 		})
 	},
 	methods: {
 		login() {
+			uni.clearStorage()
 			uni.navigateTo({
 				url: '/pages/login/login'
 			});

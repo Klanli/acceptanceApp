@@ -10,6 +10,7 @@ export default {
 			checkNum: '', //检查数量
 			acceptRecode: '', //验收记录
 			isNoDataReview: true,
+			standardId: ''
 		}
 	},
 	onLoad(option) {
@@ -20,7 +21,7 @@ export default {
 			this.checkList += option.checkList
 			// console.log(this.checkList)
 		}
-		
+
 
 	},
 	onShow() {
@@ -30,7 +31,7 @@ export default {
 			key: 'projectInfo',
 			success: function(res) {
 				console.log(res.data);
-				_this.projectId = _this.splitStr(res.data[0].valut)[0]
+				_this.projectId = _this.splitStr(res.data)[0]
 				_this.getContent()
 			}
 		})
@@ -43,9 +44,14 @@ export default {
 			uni.getStorage({
 				key: 'checkContent',
 				success: function(res) {
-					console.log(res)
-					_this.content = res.data.title,
-						_this.checklistId = res.data.id
+					console.log(res.data.remark)
+					_this.content = res.data.title
+					_this.checklistId = res.data.id
+					_this.standardId = res.data.standardId
+					_this.acceptRecode = res.data.remark
+					// _this.onEditorReady()
+
+
 					if (res.data.standardId == 'standard_001') {
 						console.log(1)
 						_this.isNoDataReview = true
@@ -82,8 +88,7 @@ export default {
 				url: `/pages/rules/Rule`,
 			});
 		},
-		uploadFiles() {
-			// console.log(type)
+		uploadImage(type) {
 			uni.chooseImage({
 				success: (chooseImageRes) => {
 					const tempFilePaths = chooseImageRes.tempFilePaths;
@@ -91,13 +96,11 @@ export default {
 						url: 'http://39.104.90.111:2225/upload', //仅为示例，非真实的接口地址
 						filePath: tempFilePaths[0],
 						name: 'file',
-						formData: {
-							'user': 'test'
-						},
+						fileType: 'img',
 						success: (uploadFileRes) => {
 							let res = JSON.parse(uploadFileRes.data)
 							if (res.httpStatus == 200) {
-								this.saveFile(res.result)
+								this.saveFile(res.result, type)
 							} else {
 								this.$refs.uToast.show({
 									title: '上传失败，请检查网络，文件大小，文件格式',
@@ -117,6 +120,45 @@ export default {
 				}
 			});
 		},
+		//上传视频
+		uploadVideo(type) {
+			uni.chooseVideo({
+				maxDuration: 10,
+				count: 1,
+				sourceType: ['album'],
+				success: (res) => {
+					let tempFilePath = res.tempFilePath
+					// console.log(tempFilePath)
+					uni.uploadFile({
+						url: 'http://39.104.90.111:2225/upload', //仅为示例，非真实的接口地址
+						filePath: tempFilePath,
+						name: 'file',
+						fileType: 'video',
+						success: (uploadFileRes) => {
+							console.log(uploadFileRes)
+							let res = JSON.parse(uploadFileRes.data)
+							if (res.httpStatus == 200) {
+								this.saveFile(res.result, type)
+							} else {
+								this.$refs.uToast.show({
+									title: '上传失败，请检查网络，文件大小，文件格式',
+									type: 'error',
+									duration: 3000
+								})
+							}
+						},
+						fail: (err) => {
+							this.$refs.uToast.show({
+								title: '上传失败，请检查网络，文件大小，文件格式',
+								type: 'error',
+								duration: 3000
+							})
+						}
+					})
+				}
+			})
+			// })
+		},
 		//切割字符串
 		splitStr(str) {
 			let s = '';
@@ -131,8 +173,10 @@ export default {
 		},
 		// 提交
 		async onSubmit() {
+			// console.log(this.acceptRecode)
+			// console.log(this.editorCtx)
 			let param = {};
-			console.log(this.isNoDataReview)
+			// console.log(this.isNoDataReview)
 			if (this.isNoDataReview) {
 				param = {
 					record: {
@@ -157,7 +201,9 @@ export default {
 
 				}
 			}
-			param = JSON.stringify(param)
+			// console.log(param)
+			// param = JSON.stringify(Object.assign(param))
+			// console.log(param)
 			let res = await this.$api.POST_submitRecode(param)
 			if (res.httpStatus == 200) {
 				this.$refs.uToast.show({
@@ -174,14 +220,15 @@ export default {
 			}
 		},
 		// 保存文件
-		async saveFile(url) {
-			let type = this.splitStrD(url)[0]
+		async saveFile(url, type1) {
+			// let type = this.splitStrD(url)[0]
 			let param = {
 				checklistId: this.checklistId,
 				projectId: this.projectId,
-				type,
+				type: type1,
 				uploadName: url,
-				uploadUrl: url
+				uploadUrl: url,
+				standardId: this.standardId
 			}
 			let res = await this.$api.POST_addUpload(param)
 			if (res.httpStatus == 200) {
@@ -200,8 +247,8 @@ export default {
 		},
 		// 数据回填
 		async getData() {
-			console.log(this.checklistId)
-			console.log(this.projectId)
+			// console.log(this.checklistId)
+			// console.log(this.projectId)
 			let param = {
 				checklistId: this.checklistId,
 				projectId: this.projectId,
@@ -209,16 +256,30 @@ export default {
 			let res = await this.$api.POST_getRecordByChecklistId(param)
 			console.log(res)
 			if (res.httpStatus == 200) {
-            if(this.isNoDataReview){
-				this.checkList = res.result.result.checkPart
-				this.checkNum = res.result.result.checkNum
-				this.acceptRecode = res.result.result.contentRecord
-				this.value = res.result.result.result
-			}else{
-				this.acceptRecode = res.result.result.contentRecord
-				this.value = res.result.result.result
+				if (this.isNoDataReview) {
+					this.checkList = res.result.result.checkPart
+					this.checkNum = res.result.result.checkNum
+					this.acceptRecode = res.result.result.contentRecord ? res.result.result.contentRecord :this.acceptRecode
+					this.value = res.result.result.result
+				} else {
+					this.acceptRecode = res.result.result.contentRecord
+					this.value = res.result.result.result
+				}
 			}
-			}
+		},
+		//验收记录富文本
+		onEditorReady() {
+			let _this = this
+			uni.createSelectorQuery().select('#editor').context((res) => {
+				this.editorCtx = res.context
+				this.editorCtx.setContents({
+					html:_this.acceptRecode 
+				})
+			}).exec()
+		},
+		editorChange(e) {
+			this.acceptRecode = e.detail.html
 		}
+
 	}
 }

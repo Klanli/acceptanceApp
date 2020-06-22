@@ -11,19 +11,25 @@
 			:striped-active="true"
 			:show-percent="false"></u-line-progress>
 			<view class="option_mes">
-				<text style="font-size: 16px;margin: 6px 0;" v-for="(item,index) in optionData" :key='index'>{{item.label}}:{{item.value}}</text>
+				<text style="font-size: 16px;margin: 6px 0;" v-for="(item,index) in optionData" :key='index'>{{item.label}}{{item.value}}</text>
 			</view>
 		</view>
 		<view class="buttom_list">
 			<view class="title">
-				<text style="font-size: 20px;">工程项目</text>
+				<text style="font-size: 30upx;">工程项目</text>
 				<!-- <view>
 					<u-button plain size='mini' type="primary">新增 +</u-button>
 				</view> -->
 			</view>
-			<u-cell-group>
-				<u-cell-item v-for="(item,index) in list" :key='index' :title="item.label" value="查看统计" @tap='check(item.value)'></u-cell-item>
-			</u-cell-group>
+			<!-- <u-cell-group>
+				<u-cell-item v-for="(item,index) in list" :key='index' :title="item.label" @tap='check(item.value)'></u-cell-item>
+			</u-cell-group> -->
+			<view class="projects" >
+				<view class="project" v-for="(item,index) in list" :key='index' @click='check(item.value)'>
+					{{item.label}}
+				</view>
+			</view>
+			
 		</view>
 	</view>
 </template>
@@ -33,7 +39,7 @@
 <style lang="less" scoped>
 	.home_content {
 		text-align: center;
-		height: calc(100vh - 44px - 50px);
+		height: calc(100vh);
 		background-color: #F5F5F9;
 		margin: 0;
 		padding: 0;
@@ -63,6 +69,17 @@
 				display: flex;
 				align-items: center;
 				justify-content: space-between;
+			}
+		}
+		.projects{
+			.project{
+				// color: #000;
+				font-size: 30upx;
+				line-height: 70upx;
+				border-bottom: 1px solid #ccc;
+			}
+			.project:hover{
+				background-color: #fff;
 			}
 		}
 	}

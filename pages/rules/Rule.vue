@@ -1,6 +1,6 @@
 <template>
-	<view class="require_content">
-		<view style="color:#fff">
+	<view class="rule_content">
+		<view>
 			{{ruleContent}}
 		</view>
 	</view>
@@ -10,7 +10,7 @@
 </script>
 
 <style lang="less" scoped>
-	.require_content{
+	.rule_content{
 		height: calc(100vh - 44px);
 		// background-color: #1F1E27;
 		.u-search{
