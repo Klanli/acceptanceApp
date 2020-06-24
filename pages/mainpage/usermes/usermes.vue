@@ -8,7 +8,7 @@
 			</view>
 			<view style="padding-top: 0px;">
 				<p style="font-size: 16px;font-weight: 600;">{{username}}</p>
-				<p style="color: #7e7e7e;">摘要信息</p>
+				<p style="color: #7e7e7e;">账号：{{account}}</p>
 			</view>
 		</view>
 		<u-cell-group style="margin-top: 10px;">
@@ -23,10 +23,10 @@
 		</u-cell-group>
 		<u-cell-group style="margin-top: 10px;">
 			<u-cell-item icon="phone-fill" title="联系方式" :value='phone' :arrow="false"></u-cell-item>
-			<u-cell-item icon="home-fill" title="工作单位" value='单位内容' :arrow="false"></u-cell-item>
+			<u-cell-item icon="home-fill" title="工作单位" :value='factoryName' :arrow="false"></u-cell-item>
 			<!-- <u-cell-item icon="fingerprint" title="职业资格" value='资格' :arrow="false"></u-cell-item> -->
 		</u-cell-group>
-		<u-button style="margin-top: 20px;" type="error" @tap='login'>退出登录</u-button>
+		<u-button style="margin-top: 20px; width: 70%;" type="error" @tap='login'>退出登录</u-button>
 		<view style="height: 6vh;"></view>
 	</view>
 </template>

@@ -13,8 +13,8 @@ export default {
 			// data: e
 			success: function(res) {
 				console.log(res.data)
-				let projectId = _this.splitStr(res.data[0].valut)[0]
-				let contentId = _this.splitStr(res.data[0].valut)[1]
+				let projectId = _this.splitStr(res.data)[0]
+				let contentId = _this.splitStr(res.data)[1]
 				_this.getAcceptContent(projectId, contentId)
 			}
 		})
@@ -51,9 +51,16 @@ export default {
 			// let checkList = JSON.stringify(
 			// 	this.checkList
 			// )
-			uni.navigateTo({
-				url: `/pages/Record/Record?checkList=${this.checkList}`,
-			});
+			// uni.navigateTo({
+			// 	url: `/pages/Record/Record`,
+			// });
+			uni.setStorage({
+				key:'checkList',
+				data:this.checkList,
+				success: function () {
+				        uni.navigateBack();
+				    }
+			})
 		},
 		checkboxGroupChange(e) {
 			// console.log(1,e)

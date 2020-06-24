@@ -4,34 +4,35 @@
 		<view style="background-color: #ececec;border-top:1px solid #ccc;border-bottom:1px solid #ccc;">
 			<text>验收内容:</text>
 			<view>
-				<u-button type="primary" style="margin-right: 8px;" size="mini" @click="toMethods()">方法</u-button>
-				<u-button type="primary" size="mini" @click="getrequire">要求</u-button>
+				<u-button type="primary" style="margin-right: 8px;" size="mini" @click="toMethods()" plain>方法</u-button>
+				<u-button type="primary" size="mini" @click="getrequire" plain>要求</u-button>
 			</view>
 		</view>
 		<!-- <u-input v-model="content" :type="type" :border="border" :auto-height="autoHeight" /> -->
-		<textarea class="textarea" auto-height v-model='content' disabled/>
+		<textarea class="textarea" auto-height v-model='content' disabled style="textIndent:30upx; color:#808080" />
 		<view v-show="isNoDataReview" style="background-color: #ececec;border-top:1px solid #ccc;border-bottom:1px solid #ccc;">
 			<text>检查部位:</text>
 			<view>
-				<u-button type="primary" size="mini" @click="toBuildInfo()">抽样</u-button>
+				<u-button type="primary" size="mini" @click="toBuildInfo()" plain>抽样</u-button>
 			</view>
 		</view>
-		<textarea class="textarea" auto-height v-model='checkList' v-show="isNoDataReview" placeholder="请输入"/>
+		<textarea class="textarea" auto-height v-model='checkList' v-show="isNoDataReview" placeholder="请输入"  style="textIndent:30upx ;color:#808080"/>
 		<view v-show="isNoDataReview" style="background-color: #ececec;border-top:1px solid #ccc;border-bottom:1px solid #ccc;">
 			<text>检查数量:</text>
 		</view>
-		<textarea class="textarea" auto-height v-model='checkNum' v-show="isNoDataReview" placeholder="请输入"/>
+		<textarea class="textarea" auto-height v-model='checkNum' v-show="isNoDataReview" placeholder="请输入" style="textIndent:30upx ;color:#808080"/>
 		<view style="background-color: #ececec;border-top:1px solid #ccc;border-bottom:1px solid #ccc;">
 			<text>验收记录:</text>
 			<view>
-				<u-button type="primary" size="mini" @click="toProblem()">问题</u-button>
+				<u-button type="primary" size="mini" @click="toProblem()" plain>问题</u-button>
 			</view>
 		</view>
 		<!-- <textarea class="textarea" style="min-height: 22vh;" auto-height v-model='acceptRecode' placeholder="请输入11s"/> -->
-		<editor id="editor" class="ql-container" auto-height @ready="onEditorReady" @input="editorChange"></editor>
+		<editor id="editor" class="ql-container" auto-height @ready="onEditorReady" @input="editorChange" style="min-height: 200upx;height:200upx;borderBottom: 1px solid #ccc; text-indent: 30upx;"></editor>
 		<view>
 			<u-button type="primary" size="mini" @click=
-			"uploadImage('PNG')">上传图片</u-button><u-button type="primary" size="mini" @click=
+			"uploadImage('PNG')">上传图片</u-button>
+			<u-button type="primary" size="mini" @click=
 			"uploadVideo('MP4')">上传视频</u-button>
 			<!-- <u-button type="primary" size="mini" @click=
 			"uploadFiles('MP4')">视频上传</u-button>
@@ -41,7 +42,7 @@
 		<view style="background-color: #ececec;border-top:1px solid #ccc;border-bottom:1px solid #ccc;">
 			<text>评定结论:</text>
 			<view>
-				<u-button type="primary" size="mini" @click="toRules()">规则</u-button>
+				<u-button type="primary" size="mini" @click="toRules()" plain>规则</u-button>
 			</view>
 		</view>
 		<view style="display: flex;justify-content: center;">
@@ -63,6 +64,7 @@
 <style lang='less' scoped>
 	.record_content{
 		height: calc(100vh - 44px);
+		/* font-size: 16rpx; */
 		/* background-color: #1F1E27; */
 		&>view{
 			/* color: #fff; */

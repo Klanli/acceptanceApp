@@ -9,7 +9,9 @@ export default {
 			maskCloseAble: true,
 			showCancelButton: true,
 			username:'',
-			phone:''
+			phone:'',
+			account:'',
+			factoryName:''
 		};
 	},
 	
@@ -22,6 +24,8 @@ export default {
 				_this.userId = res.data.userId
 				_this.username = res.data.username
 				_this.phone = res.data.phone
+				_this.account = res.data.account
+				_this.factoryName = res.data.factoryName
 			}
 		})
 	},

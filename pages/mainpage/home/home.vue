@@ -1,8 +1,10 @@
 <template>
 	<view class="home_content">
 		<view class="top_mes">
-			<text>完成率</text>
+			<view style="text-align: center;">
+				<text>完成率</text>
 			<u-count-to bold font-size='70' :start-val="0" :end-val="percent"></u-count-to>%
+			</view>
 			<u-line-progress 
 			style="margin-top: 20px;"
 			active-color="#2979ff" 
@@ -38,7 +40,7 @@
 
 <style lang="less" scoped>
 	.home_content {
-		text-align: center;
+		// text-align: center;
 		height: calc(100vh);
 		background-color: #F5F5F9;
 		margin: 0;
@@ -77,6 +79,7 @@
 				font-size: 30upx;
 				line-height: 70upx;
 				border-bottom: 1px solid #ccc;
+				text-indent: 20upx;
 			}
 			.project:hover{
 				background-color: #fff;

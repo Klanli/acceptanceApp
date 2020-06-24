@@ -5,6 +5,7 @@ export default {
 			projectList: [],
 			show: false,
 			projectId: '', //当前选中的projectId
+			projectName:'云南省深深独家试爱组建项目'
 		}
 	},
 	onLoad() {
@@ -32,8 +33,8 @@ export default {
 							return {
 								finishTasksNum: i.finishTasksNum,
 								totalTasksNum: i.totalTasksNum,
-								num: `${item.finishTasksNum}/${item.totalTasksNum}`,
-								title: `${item.finishTasksNum}/${item.totalTasksNum}` + '---' + i.titleName,
+								num: `${i.finishTasksNum}/${i.totalTasksNum}`,
+								title: `${i.finishTasksNum}/${i.totalTasksNum}` + '---' + i.titleName,
 								animation: true,
 								id: i.standardSecondaryTitleId,
 								children: i.checklistList.map(j => {
@@ -67,8 +68,8 @@ export default {
 							return {
 								finishTasksNum: i.finishTasksNum,
 								totalTasksNum: i.totalTasksNum,
-								num: `${item.finishTasksNum}/${item.totalTasksNum}`,
-								title: `${item.finishTasksNum}/${item.totalTasksNum}` + '---' + i.titleName,
+								num: `${i.finishTasksNum}/${i.totalTasksNum}`,
+								title: `${i.finishTasksNum}/${i.totalTasksNum}` + '---' + i.titleName,
 								animation: true,
 								id: i.standardSecondaryTitleId,
 								children: i.checklistList.map(j => {
@@ -90,12 +91,10 @@ export default {
 					}
 				})
 				this.accordion = list1.concat(list2)
-				// console.log(this.accordion)
 			}
 		},
 		assess(val) {
 			console.log(val)
-			// let param = JSON.stringify(val)
 			uni.setStorage({
 				key: 'checkContent',
 				data: val,
@@ -129,19 +128,12 @@ export default {
 
 							}
 						})
-						// let eData = [{label:_this.projectList[0].label,
-						// valut:_this.projectList[0].value
-						// }]			
-						// console.log(eData)
-
-						// console.log(_this.splitStr(_this.projectList[0].value)[0])
-						// _this.getList(_this.splitStr(_this.projectList[0].value)[0])
-						// _this.peojectId = _this.splitStr(_this.projectList[0].value)[0]
-						_this.peojectId = _this.projectList[0].value
-						_this.getList(_this.splitStr(_this.peojectId)[0])
+						_this.projectId = _this.projectList[0].value
+						_this.getList(_this.splitStr(_this.projectId)[0])
+						_this.projectName = _this.projectList[0].label
 						uni.setStorage({
 							key: 'projectInfo',
-							data: _this.peojectId
+							data: _this.projectId
 						})
 					}
 				}
@@ -160,6 +152,7 @@ export default {
 				this.projectId = e[0].valut
 			}
 			this.getList(projectId)
+			this.projectName = e[0].label
 			uni.setStorage({
 				key: 'projectInfo',
 				data: this.projectId

@@ -9,7 +9,12 @@ export default {
 			headsty: {
 				// color: '#fff'
 				// textIndent: '10upx'
+				paddingLeft:'20upx'
 
+			},
+			bodyStyle:{
+				height:'300px',
+				overflowY: 'scroll'
 			},
 			baseInfo: [{
 					label: '工程名称：',
@@ -127,6 +132,7 @@ export default {
 			buildTypeList: [], //结构类型
 			refractoryLevelList: [], //耐火等级
 			project:{}, //当前选中的项目
+			activeIndex:0, // 当前打开的折叠面板
 		};
 	},
 	onLoad() {
@@ -139,22 +145,15 @@ export default {
 	methods: {
 		//打开折叠面板
 		OnBuild(activeNames) {
-			// console.log(activeNames)
-			// console.log(this)
-			// console.log(this.projectList)
-			// console.log(this.project)
+			this.activeIndex = activeNames;
 			switch (activeNames) {
 				case '0':
-					console.log(this.splitStr(this.project.value)[0])
 					this.getProjectInformation(this.splitStr(this.project.value)[0])
 					break;
 				case '1':
 					this.getAccept(this.splitStr(this.project.value)[1])
-					// this.changetab(0)
 					break;
 				default:
-					// console.log(this.splitStr(this.projectList[0].value)[0])
-					// console.log(this.splitStr(this.projectList[0].value)[1])
 					this.getFacilities(this.splitStr(this.project.value)[0], this.splitStr(this.project.value)[2])
 					break;
 			}
@@ -194,8 +193,8 @@ export default {
 		},
 		//选中项目
 		confirm(e) {
-			console.log(this.project)
-			console.log(e[0])
+			// console.log(this.project)
+			// console.log(e[0])
 			this.project = e[0]
 			if(e[0].value){
 				this.project = e[0]
@@ -205,13 +204,8 @@ export default {
 					value:e[0].valut,
 				}
 			}
-// 			let projectId = this.splitStr(e[0].valut)[0]
-// 			let contentId = this.splitStr(e[0].valut)[1]
-// 			let standardId = this.splitStr(e[0].valut)[2]
-// 			this.getProjectInformation(projectId)
-// 			this.getAccept(contentId)
-// 			this.getFacilities(projectId, standardId)
-// // valut
+			this.OnBuild(this.activeIndex)
+			
 		},
 		//获取项目基本信息
 		async getProjectInformation(a) {
@@ -288,29 +282,30 @@ export default {
 		//获取验收内容6项
 		changetab(index) {
 			this.current = index
+			console.log(this.acceptContent)
 			switch (index) {
 				case 1:
-					console.log(1)
+					// console.log(1)
 					this.basetabInfo = []
 					break;
 				case 2:
-					console.log(2)
+					// console.log(2)
 					this.basetabInfo = []
 					break;
 				case 3:
-					console.log(3)
+					// console.log(3)
 					this.basetabInfo = []
 					break;
 				case 4:
-					console.log(4)
+					// console.log(4)
 					this.basetabInfo = []
 					break;
 				case 5:
-					console.log(5)
+					// console.log(5)
 					this.basetabInfo = []
 					break;
 				default:
-					console.log(111)
+					// console.log(111)
 					this.basetabInfo = this.acceptContent.ac1Builds.map(item => {
 						let buildTypeId = '';
 						this.buildTypeList.forEach(i => {
@@ -336,51 +331,8 @@ export default {
 							aboveGroundFloorArea: item.aboveGroundFloorArea + 'm²',
 							undergroundFloorSpace: item.undergroundFloorSpace + 'm²',
 						}
-						// return [{
-						// 		label: '建筑名称：',
-						// 		value: item.buildName
-						// 	},
-						// 	{
-						// 		label: '结构类型：',
-						// 		value: buildTypeId
-						// 	},
-						// 	{
-						// 		label: '耐火等级：',
-						// 		value: item.refractoryLevelId
-						// 	},
-						// 	{
-						// 		label: '地上层数：',
-						// 		value: item.inTheUpperNumber + '层'
-						// 	},
-						// 	{
-						// 		label: '地下层数：',
-						// 		value: item.numberOfUnderground + '层'
-						// 	},
-						// 	{
-						// 		label: '建筑高度：',
-						// 		value: item.buildHeight + 'm'
-						// 	},
-						// 	{
-						// 		label: '建筑长度：',
-						// 		value: item.buildLen + 'm'
-						// 	},
-						// 	{
-						// 		label: '占地面积：',
-						// 		value: item.coversArea + 'm²'
-						// 	},
-						// 	{
-						// 		label: '地上建筑面积：',
-						// 		value: item.aboveGroundFloorArea + 'm²'
-						// 	},
-						// 	{
-						// 		label: '地下建筑面积：',
-						// 		value: item.undergroundFloorSpace + 'm²'
-						// 	}
-						// ]
-
 
 					})
-					// break;
 
 			}
 		},
@@ -404,14 +356,14 @@ export default {
 					})
 					let refractoryLevelId = '';
 					this.refractoryLevelList.forEach(i => {
-						console.log(i)
-						console.log(item.refractoryLevelId)
+						// console.log(i)
+						// console.log(item.refractoryLevelId)
 						if (i.dictionaryId == item.refractoryLevelId) {
-							console.log(i.name)
+							// console.log(i.name)
 							refractoryLevelId = i.name
 						}
 					})
-					console.log(refractoryLevelId)
+					// console.log(refractoryLevelId)
 					return {
 						buildName: item.buildName,
 						buildTypeId: buildTypeId,

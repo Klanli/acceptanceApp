@@ -4,6 +4,9 @@
 		<view class="selectList">
 			<u-select v-model="show" mode="single-column" :list="projectList" @confirm="confirm"></u-select>
 		</view>
+		<view class="projectName">
+			{{projectName}}
+		</view>
 		<uni-collapse :accordion="true">
  			<uni-collapse-item class="firstmenu" v-for="(item,index) in accordion" :key="index" :title="item.title" :show-animation="item.animation">
 				<view class="">
@@ -30,8 +33,13 @@
 
 <style lang="less" scoped>
 	.assess_content{
-		height: calc(100vh - 44px - 50px);
+		height: calc(100vh);
 		background-color: #F5F5F9;
+		.projectName{
+			line-height: 80upx;
+			border-bottom: 1px solid #ccc;
+			text-align: center;
+		}
 		.firstmenu{
 			background-color: #fff;
 			// color: #fff;

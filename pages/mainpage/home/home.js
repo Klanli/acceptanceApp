@@ -58,22 +58,22 @@ export default {
 					},
 					{
 						label: '主控项：',
-						value: primaryFinishABTasks
+						value: primaryNonFinishABTasks
 					},
 					{
 						label: '一般项：',
-						value: secondaryFinishCTasks
+						value: secondaryNonFinishCTasks
 					}, {
 						label: '已验收',
 						value: ''
 					},
 					{
 						label: '主控项：',
-						value: primaryNonFinishABTasks
+						value: primaryFinishABTasks
 					},
 					{
 						label: '一般项：',
-						value: secondaryNonFinishCTasks
+						value: secondaryFinishCTasks
 					}
 					// {lable:'待验收',value:totalTasks-finishTasks},
 				]

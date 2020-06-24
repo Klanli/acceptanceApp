@@ -12,9 +12,18 @@ export default {
 		uni.getStorage({
 			key: 'checkContent',
 			success: function(res) {
-				console.log(res.data);
 				_this.requiremess = res.data.technologyRequires
 			}
 		})
+		
+		let str = 'asdjanadnasndasdnasndasndsa'
+		str = str.replace('as',`<span style='color:red'>as<span>`)
+		console.log(str)
 	},
+	methods:{
+		searchText(){
+			var subStr = new RegExp(this.keyword,'g');
+			     this.requiremess=this.requiremess.replace(subStr,"<span style='background-color:#808080'>"+this.keyword+"</span>")
+		}
+	}
 }

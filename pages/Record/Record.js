@@ -13,26 +13,41 @@ export default {
 			standardId: ''
 		}
 	},
-	onLoad(option) {
+	onLoad() {
 		// let checkList = JSON.parse(option.checkList)
 		let _this = this
 		// console.log(option.checkList)
-		if (option.checkList) {
-			this.checkList += option.checkList
-			// console.log(this.checkList)
-		}
-
-
-	},
-	onShow() {
-		// 取projectId
-		let _this = this
+		// if (option.checkList) {
+		// 	this.checkList += option.checkList
+		// 	// console.log(this.checkList)
+		// }
+		
+		
 		uni.getStorage({
 			key: 'projectInfo',
 			success: function(res) {
 				console.log(res.data);
 				_this.projectId = _this.splitStr(res.data)[0]
 				_this.getContent()
+			}
+		})
+
+
+	},
+	onShow() {
+		let _this = this
+		
+		uni.getStorage({
+			key:'checkList',
+			success:function(res) {
+				if(res.data){
+					_this.checkList +=res.data.join('，')
+					try {
+					    uni.removeStorageSync('checkList');
+					} catch (e) {
+					    console.log(e)
+					}
+				}
 			}
 		})
 	},
@@ -125,7 +140,8 @@ export default {
 			uni.chooseVideo({
 				maxDuration: 10,
 				count: 1,
-				sourceType: ['album'],
+				sourceType: ['album','camera'],
+				maxDuration:60,
 				success: (res) => {
 					let tempFilePath = res.tempFilePath
 					// console.log(tempFilePath)

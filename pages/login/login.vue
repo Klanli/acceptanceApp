@@ -2,8 +2,9 @@
 	<view class="login_content">
 		<u-toast ref="uToast" />
 		<!-- <u-avatar src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=4146511713,1144796055&fm=11&gp=0.jpg" size="220"></u-avatar> -->
+		<p>昆明市住房和城乡建设局</p>
 		<p>建设工程消防验收</p>
-		<u-tabs style="width: 260px;" bg-color='#F5F5F9' bar-width='220' :list="list" :is-scroll="false" :current="current" @change="change"></u-tabs>
+		<!-- <u-tabs style="width: 260px;" bg-color='#F5F5F9' bar-width='220' :list="list" :is-scroll="false" :current="current" @change="change"></u-tabs> -->
 		<view v-if="current == 0" style="width: 80vw;">
 			<u-cell-group>
 				<u-field
@@ -62,8 +63,9 @@
 			<u-button type="primary" @click="login">登录</u-button>
 		</view>
 		<view class="bottom_mes">
-			<p>昆明市住房和城乡建设局</p>
+			<!-- <p>昆明市住房和城乡建设局</p> -->
 			<!-- <p>技术支持：华龙万相智慧安全科技（成都）有限公司</p> -->
+			<image src="../../static/zhujian.png" mode=""></image>
 		</view>
 	</view>
 </template>
@@ -73,7 +75,8 @@
 <style lang="less" scoped>
 	.login_content{
 		background-color: #F5F5F9;
-		height: calc(100vh - 44px);
+		// height: calc(100vh - 44px);
+		height: calc(100vh);
 		text-align: center;
 		display: flex;
 		flex-direction: column;
@@ -88,7 +91,11 @@
 		&>.bottom_mes{
 			color: #939393;
 			position: absolute;
-			bottom: 2vh;
+			bottom: 0;
+			image{
+				width: 100vw;
+				height: 300upx;
+			}
 		}
 	}
 </style>
