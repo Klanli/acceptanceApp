@@ -1,7 +1,7 @@
 <template>
 	<view class="rule_content">
-		<view>
-			{{ruleContent}}
+		<view v-html="ruleContent">
+			<!-- {{ruleContent}} -->
 		</view>
 	</view>
 </template>

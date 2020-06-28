@@ -11,11 +11,18 @@ export default {
 			username:'',
 			phone:'',
 			account:'',
-			factoryName:''
+			factoryName:'',
+			password:'',
+			token:'',
+			autoLogin:''
 		};
 	},
 	
 	onLoad() {
+		// console.log(11111)
+	    this.token = uni.getStorageSync('loginInfo')
+	    this.autoLogin = uni.getStorageSync('autoLogin')
+		// console.log(uni.getStorageSync('autoLogin'))
 		let _this = this
 		uni.getStorage({
 			key: 'userInfo',
@@ -24,17 +31,43 @@ export default {
 				_this.userId = res.data.userId
 				_this.username = res.data.username
 				_this.phone = res.data.phone
-				_this.account = res.data.account
 				_this.factoryName = res.data.factoryName
+				_this.account = res.data.account
+				// _this.appToken = res.data.appToken
+				_this.password = res.data.password
+				// _this.password = res.data.password
 			}
 		})
 	},
 	methods: {
 		login() {
+			let _this = this
 			uni.clearStorage()
+			// console.log(this.autoLogin)
+			// uni.setStorageSync('loginInfo', this.token)
+			// uni.setStorageSync('autoLogin', this.autoLogin)
 			uni.navigateTo({
 				url: '/pages/login/login'
 			});
+			// uni.setStorage({
+			// 	key:'loginInfo',
+			// 	data:{
+			// 		account:_this.account,
+			// 		password:_this.password
+			// 		// appToken:_this.appToken
+			// 	},
+			// 	success() {
+			// 		uni.navigateTo({
+			// 			url: '/pages/login/login'
+			// 		});
+			// 	}
+			// })
+			// console.log(this.account)
+			// console.log(this.password)
+			// console.log(this.appToken)
+			// uni.navigateTo({
+			// 	url: '/pages/login/login'
+			// });
 		},
 		open() {
 			this.show = true;

@@ -302,6 +302,11 @@ var render = function() {
                     "u-checkbox",
                     {
                       attrs: { _i: 10 },
+                      on: {
+                        change: function($event) {
+                          return _vm.$handleViewEvent($event)
+                        }
+                      },
                       model: {
                         value: _vm._$g(10, "v-model"),
                         callback: function() {},
@@ -5666,7 +5671,7 @@ if(false) {}
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ./node_modules/css-loader/dist/runtime/api.js */ 16);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, ".record_content[data-v-07e850f6] {\n  height: calc(100vh - 44px);\n  /* font-size: 16rpx; */\n  /* background-color: #1F1E27; */\n}\n.record_content > uni-view[data-v-07e850f6] {\n  /* color: #fff; */\n  /* background-color: #292B32; */\n  padding: 0 10px;\n  height: 40px;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: flex;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n          align-items: center;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n          justify-content: space-between;\n}\n.record_content .textarea[data-v-07e850f6] {\n  width: 100vw;\n  min-height: 8vh;\n  /* background-color: #1F1E27; */\n  /* color: #818181; */\n}\n.record_content .textarea > uni-view[data-v-07e850f6] {\n  width: 100%!important;\n}\n", ""]);
+exports.push([module.i, ".record_content[data-v-07e850f6] {\n  height: calc(100vh - 44px);\n  font-size: 30upx;\n  /* background-color: #1F1E27; */\n}\n.record_content > uni-view[data-v-07e850f6] {\n  /* color: #fff; */\n  /* background-color: #292B32; */\n  padding: 0 10px;\n  height: 40px;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: flex;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n          align-items: center;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n          justify-content: space-between;\n}\n.record_content .textarea[data-v-07e850f6] {\n  width: 100vw;\n  min-height: 8vh;\n  font-size: 30upx;\n  /* background-color: #1F1E27; */\n  /* color: #818181; */\n}\n.record_content .textarea > uni-view[data-v-07e850f6] {\n  width: 100%!important;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -6867,7 +6872,12 @@ var render = function() {
   return _c(
     "v-uni-view",
     { staticClass: _vm._$g(0, "sc"), attrs: { _i: 0 } },
-    [_c("v-uni-view", { attrs: { _i: 1 } }, [_vm._v(_vm._$g(1, "t0-0"))])],
+    [
+      _c("v-uni-view", {
+        attrs: { _i: 1 },
+        domProps: { innerHTML: _vm._s(_vm._$g(1, "v-html")) }
+      })
+    ],
     1
   )
 }
@@ -8955,17 +8965,14 @@ var render = function() {
       _c(
         "u-cell-group",
         { staticStyle: { "margin-top": "10px" }, attrs: { _i: 13 } },
-        [
-          _c("u-cell-item", { attrs: { _i: 14 } }),
-          _c("u-cell-item", { attrs: { _i: 15 } })
-        ],
+        [_c("u-cell-item", { attrs: { _i: 14 } })],
         1
       ),
       _c(
         "u-button",
         {
           staticStyle: { "margin-top": "20px", width: "70%" },
-          attrs: { _i: 16 },
+          attrs: { _i: 15 },
           on: {
             click: function($event) {
               return _vm.$handleViewEvent($event)
@@ -8974,7 +8981,7 @@ var render = function() {
         },
         [_vm._v("退出登录")]
       ),
-      _c("v-uni-view", { staticStyle: { height: "6vh" }, attrs: { _i: 17 } })
+      _c("v-uni-view", { staticStyle: { height: "6vh" }, attrs: { _i: 16 } })
     ],
     1
   )

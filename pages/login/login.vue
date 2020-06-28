@@ -28,7 +28,7 @@
 			<u-checkbox-group style="width: 80vw;margin: 0px 0px 20px;">
 				<u-checkbox 
 					v-model="autologin" 
-					name="autologin"
+					name="autologin" @change="autoLogin()"
 				>自动登录</u-checkbox>
 			</u-checkbox-group>
 			<u-button type="primary" @click="login">登录</u-button>

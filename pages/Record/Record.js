@@ -59,12 +59,13 @@ export default {
 			uni.getStorage({
 				key: 'checkContent',
 				success: function(res) {
-					console.log(res.data.remark)
+					console.log(res.data)
 					_this.content = res.data.title
 					_this.checklistId = res.data.id
 					_this.standardId = res.data.standardId
-					_this.acceptRecode = res.data.remark
+					_this.acceptRecode =  res.data.remark
 					// _this.onEditorReady()
+					_this.checkNum = res.data.samplingRequires
 
 
 					if (res.data.standardId == 'standard_001') {
@@ -227,7 +228,13 @@ export default {
 					type: 'success',
 					duration: 2000
 				})
-			} else {
+			} else if(res.httpStatus == 417){
+				this.$refs.uToast.show({
+					title: '只能本人修改',
+					type: 'error',
+					duration: 3000
+				})
+			}else {
 				this.$refs.uToast.show({
 					title: '提交失败，请检查网络，填写项',
 					type: 'error',
@@ -274,7 +281,7 @@ export default {
 			if (res.httpStatus == 200) {
 				if (this.isNoDataReview) {
 					this.checkList = res.result.result.checkPart
-					this.checkNum = res.result.result.checkNum
+					this.checkNum = res.result.result.checkNum ?res.result.result.checkNum : this.checkNum
 					this.acceptRecode = res.result.result.contentRecord ? res.result.result.contentRecord :this.acceptRecode
 					this.value = res.result.result.result
 				} else {

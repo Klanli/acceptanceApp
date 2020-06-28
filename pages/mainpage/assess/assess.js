@@ -38,7 +38,7 @@ export default {
 								animation: true,
 								id: i.standardSecondaryTitleId,
 								children: i.checklistList.map(j => {
-									// console.log(j)
+									console.log(j)
 									return {
 										standardId: j.standardId,
 										title: j.content,
@@ -47,8 +47,8 @@ export default {
 										standardId: j.standardId,
 										technologyRequires: j.technologyRequires,
 										rules: j.rules,
-										remark: j.remark
-
+										remark: j.remark,
+										samplingRequires: j.samplingRequires
 									}
 
 								})

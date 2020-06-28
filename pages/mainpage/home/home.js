@@ -85,6 +85,8 @@ export default {
 			let _this = this
 			let res = await this.$api.POST_getUserInfo()
 			if (res.httpStatus == 200) {
+				// console.log(res.result.appToken)
+				uni.setStorageSync('loginInfo', res.result.appToken)
 				uni.setStorage({
 					key: 'userInfo',
 					data: res.result,

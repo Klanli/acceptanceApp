@@ -64,7 +64,7 @@
 <style lang='less' scoped>
 	.record_content{
 		height: calc(100vh - 44px);
-		/* font-size: 16rpx; */
+		font-size: 30upx;
 		/* background-color: #1F1E27; */
 		&>view{
 			/* color: #fff; */
@@ -78,6 +78,7 @@
 		.textarea{
 			width: 100vw;
 			min-height: 8vh;
+			font-size: 30upx;
 			/* background-color: #1F1E27; */
 			/* color: #818181; */
 			&>uni-view{

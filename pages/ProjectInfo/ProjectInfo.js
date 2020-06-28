@@ -214,13 +214,14 @@ export default {
 			}
 			let res = await this.$api.POST_getProjectInfo(param)
 			if (res.httpStatus == 200) {
+				console.log(res)
 				this.baseInfo = [{
 						label: '工程名称：',
 						value: res.result.project.projectName
 					},
 					{
 						label: '工程地址：',
-						value: res.result.projectInfo.regionName
+						value: res.result.project.detailedAddress
 					},
 					{
 						label: '建设单位：',

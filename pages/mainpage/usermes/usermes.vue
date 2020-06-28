@@ -23,7 +23,7 @@
 		</u-cell-group>
 		<u-cell-group style="margin-top: 10px;">
 			<u-cell-item icon="phone-fill" title="联系方式" :value='phone' :arrow="false"></u-cell-item>
-			<u-cell-item icon="home-fill" title="工作单位" :value='factoryName' :arrow="false"></u-cell-item>
+			<!-- <u-cell-item icon="home-fill" title="工作单位" :value='factoryName' :arrow="false"></u-cell-item> -->
 			<!-- <u-cell-item icon="fingerprint" title="职业资格" value='资格' :arrow="false"></u-cell-item> -->
 		</u-cell-group>
 		<u-button style="margin-top: 20px; width: 70%;" type="error" @tap='login'>退出登录</u-button>

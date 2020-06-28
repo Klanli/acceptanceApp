@@ -40,6 +40,12 @@ const api = (() => {
 	})
 	Object.keys(apilist.post).forEach(cur => {
 		apiobj[cur] = data => {
+			const Token = uni.getStorageSync('loginInfo')
+			// console.log(uni.getStorageSync('loginInfo'))
+			// if (Token) {
+				// cur +='?appToken=1'
+			// }
+			// console.log(cur)
 			uni.showLoading({
 				title: '加载中'
 			});
@@ -54,13 +60,13 @@ const api = (() => {
 						'sid': sid
 					}
 				} else {
-				header = {
-					// 'content-type': 'application/json',
-					'Accept': 'application/json, */*',
-					// 'Access-Token': Token
-					'Content-type': 'application/x-www-form-urlencoded', //设置请求参数格式
-					'sid': sid
-				}
+					header = {
+						// 'content-type': 'application/json',
+						'Accept': 'application/json, */*',
+						// 'Access-Token': Token
+						'Content-type': 'application/x-www-form-urlencoded', //设置请求参数格式
+						'sid': sid
+					}
 				}
 
 			} else {
@@ -72,9 +78,11 @@ const api = (() => {
 				}
 			}
 
+// console.log(BASEURL)
+let url = Token? BASEURL + apilist.post[cur]+'?appToken='+Token :BASEURL + apilist.post[cur]
 			return uni.request({
 				header: header,
-				url: BASEURL + apilist.post[cur],
+				url: url,
 				method: 'POST',
 				data: { ...data
 				}
