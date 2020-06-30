@@ -52,8 +52,8 @@
 			</u-radio-group>
 		</view>
 		<view style="height: 10vh;">
-			<u-button shape="circle" type="warning" @click="onSubmit()">暂时保存</u-button>
-			<u-button shape="circle" type="primary" @click="onSubmit()">确认提交</u-button>
+			<u-button shape="circle" type="warning" @click="onSubmit(true)">暂时保存</u-button>
+			<u-button shape="circle" type="primary" @click="onSubmit(false)">确认提交</u-button>
 		</view>
 	</view>
 </template>

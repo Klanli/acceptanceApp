@@ -14,15 +14,7 @@ export default {
 		}
 	},
 	onLoad() {
-		// let checkList = JSON.parse(option.checkList)
 		let _this = this
-		// console.log(option.checkList)
-		// if (option.checkList) {
-		// 	this.checkList += option.checkList
-		// 	// console.log(this.checkList)
-		// }
-		
-		
 		uni.getStorage({
 			key: 'projectInfo',
 			success: function(res) {
@@ -40,6 +32,7 @@ export default {
 		uni.getStorage({
 			key:'checkList',
 			success:function(res) {
+				console.log(res)
 				if(res.data){
 					_this.checkList +=res.data.join('，')
 					try {
@@ -189,35 +182,39 @@ export default {
 			return s
 		},
 		// 提交
-		async onSubmit() {
+		async onSubmit(bool) {
 			// console.log(this.acceptRecode)
 			// console.log(this.editorCtx)
+			// if(bool){
+				
+			// }
 			let param = {};
 			// console.log(this.isNoDataReview)
 			if (this.isNoDataReview) {
 				param = {
-					record: {
+					// record: {
 						checkNum: this.checkNum,
 						checkPart: this.checkList,
 						checklistId: this.checklistId,
 						contentRecord: this.acceptRecode,
 						isApp: 1,
 						projectId: this.projectId,
-						result: this.value
+						result: this.value,
+						saveTemp:bool
 					}
 
 				}
-			} else {
-				param = {
-					reviewRecord: {
-						checklistId: this.checklistId,
-						nonconformityDetail: this.acceptRecode,
-						projectId: this.projectId,
-						result: this.value
-					}
+			// } else {
+			// 	param = {
+			// 		reviewRecord: {
+			// 			checklistId: this.checklistId,
+			// 			nonconformityDetail: this.acceptRecode,
+			// 			projectId: this.projectId,
+			// 			result: this.value
+			// 		}
 
-				}
-			}
+			// 	}
+			// }
 			// console.log(param)
 			// param = JSON.stringify(Object.assign(param))
 			// console.log(param)
@@ -279,9 +276,17 @@ export default {
 			let res = await this.$api.POST_getRecordByChecklistId(param)
 			console.log(res)
 			if (res.httpStatus == 200) {
+				console.log(typeof(res.result.result.checkPart) )
+				console.log(res.result.result.result)
 				if (this.isNoDataReview) {
+				// let checkPart;
+				if(res.result.result.checkPart && res.result.result.checkPart!='undefined'){
 					this.checkList = res.result.result.checkPart
-					this.checkNum = res.result.result.checkNum ?res.result.result.checkNum : this.checkNum
+				}else{
+					this.checkList =''
+				}
+					// this.checkList = res.result.result.checkPart ? res.result.result.checkPart : ''
+					this.checkNum = res.result.result.checkNum ? res.result.result.checkNum : this.checkNum
 					this.acceptRecode = res.result.result.contentRecord ? res.result.result.contentRecord :this.acceptRecode
 					this.value = res.result.result.result
 				} else {
