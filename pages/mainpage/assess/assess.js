@@ -8,7 +8,7 @@ export default {
 			projectName:'云南省深深独家试爱组建项目'
 		}
 	},
-	onLoad() {
+	onShow() {
 		this.getProjects()
 	},
 	methods: {

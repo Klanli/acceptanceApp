@@ -18,7 +18,7 @@ export default {
 		};
 	},
 	
-	onLoad() {
+	onShow() {
 		// console.log(11111)
 	    this.token = uni.getStorageSync('loginInfo')
 	    this.autoLogin = uni.getStorageSync('autoLogin')
@@ -42,12 +42,16 @@ export default {
 	methods: {
 		login() {
 			let _this = this
-			uni.clearStorage()
+			uni.clearStorageSync()
 			// console.log(this.autoLogin)
 			// uni.setStorageSync('loginInfo', this.token)
 			// uni.setStorageSync('autoLogin', this.autoLogin)
-			uni.navigateTo({
-				url: '/pages/login/login'
+			// uni.navigateTo({
+			// 	url: '/pages/login/login'
+			// });
+			// plus.runtime.quit()
+			uni.reLaunch({
+			    url: '/pages/login/login'
 			});
 			// uni.setStorage({
 			// 	key:'loginInfo',

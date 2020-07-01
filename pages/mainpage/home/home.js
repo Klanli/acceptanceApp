@@ -44,7 +44,7 @@ export default {
 					secondaryFinishCTasks,
 					secondaryNonFinishCTasks
 				} = res.result.result.evaluationStatisticalDto.totalCompletionProbabilityDto
-				console.log(totalTasks, finishTasks)
+				// console.log(totalTasks, finishTasks)
 				if (totalTasks <= 0) {
 					this.percent = 0;
 				} else {
@@ -97,7 +97,7 @@ export default {
 				//获取项目
 				let res1 = await this.$api.POST_getProjectsByUser(param)
 				if (res1.httpStatus == 200) {
-					console.log(res1)
+					// console.log(res1)
 					this.list = res1.result.map(item=>{
 						return{
 							label:item.projectName,

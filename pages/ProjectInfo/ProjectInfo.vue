@@ -5,7 +5,7 @@
 		<view class="selectList">
 			<u-select v-model="show" mode="single-column" :list="projectList" @confirm="confirm"></u-select>
 		</view>
-		<u-collapse :item-style="itemStyle" :head-style="headsty" @change='OnBuild' :body-style='bodyStyle'>
+		<u-collapse :item-style="itemStyle" :head-style="headsty" @change='OnBuild' :body-style='bodyStyle' :open='uCollapseOpen'>
 			<u-collapse-item class="collitem" title="项目基本信息" index='1'>
 				<view class="collapse-item">
 					<view style="padding:4px 0" v-for="(item,index) in baseInfo" :key='index'>

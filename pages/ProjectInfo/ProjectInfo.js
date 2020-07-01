@@ -133,15 +133,20 @@ export default {
 			refractoryLevelList: [], //耐火等级
 			project:{}, //当前选中的项目
 			activeIndex:0, // 当前打开的折叠面板
+			uCollapseOpen:false
 		};
 	},
-	onLoad() {
-		uni.setNavigationBarTitle({
-			title: '工程项目'
-		});
+	onShow() {
+		// uni.setNavigationBarTitle({
+		// 	title: '工程项目'
+		// });
 		this.getOptions()
 		this.getProjects()
+		// this.OnBuild(0)
+		console.log(this.activeIndex)
+		
 	},
+	
 	methods: {
 		//打开折叠面板
 		OnBuild(activeNames) {
@@ -184,7 +189,7 @@ export default {
 						})
 						_this.project = _this.projectList[0]
 						// console.log(_this.project)
-
+                         // _this.OnBuild(0)
 
 					}
 				}

@@ -6,7 +6,7 @@ export default {
 			requiremess: '&emsp;涉及多个部分随便对付嘎斯的自尊<br/>心奶还打算年底不合格把谷歌'
 		}
 	},
-	onLoad() {
+	onShow() {
 		let _this = this
 		uni.getStorage({
 			key: 'checkContent',

@@ -23,15 +23,10 @@ export default {
 		})
 	},
 	onShow(){
+		console.log(uni.getStorageInfoSync())
 		this.autologin = uni.getStorageSync('autoLogin')
-		console.log(this.autologin)
+		// console.log(this.autologin)
 		if(this.autologin){
-			// let param = {
-			// 	phone: uni.getStorageSync('autoLogin').account,
-			// 	password: uni.getStorageSync('autoLogin').password,
-			// 	system: '1'
-			// }
-			// this.loginAuto(param)
 			let token = uni.getStorageSync('loginInfo')
 			if(token){
 				uni.switchTab({

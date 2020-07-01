@@ -6,7 +6,7 @@ export default {
 			wrap: true
 		}
 	},
-	onLoad() {
+	onShow() {
 		let _this = this
 		uni.getStorage({
 			key: 'projectInfo',

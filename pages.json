@@ -1,22 +1,31 @@
 {
-	
+
 	/* 使用uView配置 */
 	"easycom": {
-			"^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue"
-		},
+		"^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue"
+	},
 	"pages": [
 		//pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
 			"path": "pages/login/login",
 			"style": {
 				"navigationBarTitleText": "",
-				"navigationBarBackgroundColor":"#F5F5F9"
+				"navigationBarBackgroundColor": "#F5F5F9",
+				"app-plus": {
+					"titleNView": {
+						"autoBackButton": "false"
+					}
+				}
+
 			}
 		},
 		{
 			"path": "pages/ProjectInfo/ProjectInfo",
 			"style": {
-				"navigationBarTitleText": "建设工程详情"
+				"navigationBarTitleText": "工程项目"
+				// "enablePullDownRefresh": true //设置为true表示当前页面开启下拉刷新
+				// "backgroundTextStyle": "dark"  //下拉 loading 的样式，仅支持 dark/light
+
 			}
 		},
 		{
@@ -24,12 +33,12 @@
 			"style": {
 				"navigationBarTitleText": "验收记录"
 			}
-		},{
+		}, {
 			"path": "pages/Problem/Problem",
 			"style": {
 				"navigationBarTitleText": "验收常见问题"
 			}
-		},{
+		}, {
 			"path": "pages/buildInfo/BuildInfo",
 			"style": {
 				"navigationBarTitleText": "建筑信息"
@@ -46,7 +55,7 @@
 			"style": {
 				"navigationBarTitleText": "验收方法"
 			}
-		},{
+		}, {
 			"path": "pages/rules/Rule",
 			"style": {
 				"navigationBarTitleText": "验收规则"

@@ -4,7 +4,7 @@ export default {
 			textList:[]             
 		}
 	},
-	onLoad(){
+	onShow(){
 		let _this = this
 			uni.getStorage({
 				key: 'checkContent',
